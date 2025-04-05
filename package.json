@@ -1,10 +1,10 @@
 {
-  "name": "astro-paper",
+  "name": "jeoste-portfolio",
   "type": "module",
-  "version": "5.2.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "astro check && astro build && pagefind --site dist",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",

@@ -8,6 +8,8 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  // Configurez le déploiement GitHub Pages 
+  //base: '/', // Retirer cette ligne si votre site est à la racine du domaine
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
