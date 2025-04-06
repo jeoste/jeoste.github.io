@@ -42,8 +42,8 @@ const isActive = (path: string) => {
       <a
         href="/"
         class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
+        set:html={SITE.title}
       >
-        {SITE.title}
       </a>
       <nav
         id="nav-menu"
@@ -69,13 +69,18 @@ const isActive = (path: string) => {
           ]}
         >
           <li class="col-span-2">
-            <a href="/posts" class:list={{ "active-nav": isActive("/posts") }}>
-              Posts
+            <a href="/" class:list={{ "active-nav": isActive("/") }}>
+              Home
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
-              Tags
+            <a href="/portfolio" class:list={{ "active-nav": isActive("/portfolio") }}>
+              Portfolio
+            </a>
+          </li>
+          <li class="col-span-2">
+            <a href="/articles" class:list={{ "active-nav": isActive("/articles") }}>
+              Articles
             </a>
           </li>
           <li class="col-span-2">

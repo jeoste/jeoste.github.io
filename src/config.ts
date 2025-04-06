@@ -3,7 +3,7 @@ export const SITE = {
   author: "jeoste",
   profile: "https://github.com/jeoste",
   desc: "Mon portfolio et blog personnel",
-  title: "Portfolio",
+  title: "<span class='text-accent'>jeo</span>ffrey.<span class='text-accent'>ste</span>phan",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,

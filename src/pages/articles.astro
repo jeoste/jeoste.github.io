@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+
+const pageTitle = "Articles";
+const pageDesc = "Mes articles et réflexions";
+---
+
+<Layout>
+  <Header />
+  <Main pageTitle={pageTitle} pageDesc={pageDesc}>
+    <div class="prose prose-lg prose-slate dark:prose-invert">
+      <p>Bienvenue dans la section Articles. Ici, vous trouverez mes réflexions et analyses sur divers sujets.</p>
+    </div>
+    <ul class="mt-8">
+      {sortedPosts.map(data => (
+        <Card variant="h3" {...data} />
+      ))}
+    </ul>
+  </Main>
+  <Footer />
+</Layout> 

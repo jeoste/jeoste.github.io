@@ -8,6 +8,9 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  server: {
+    port: 8888
+  },
   // Configurez le déploiement GitHub Pages 
   //base: '/', // Retirer cette ligne si votre site est à la racine du domaine
   integrations: [
