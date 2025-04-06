@@ -2,6 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
+import LanguageSelector from "@/components/LanguageSelector.astro";
+import { getLangFromUrl } from "@/utils/i18n";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -46,10 +48,12 @@ const structuredData = {
     },
   ],
 };
+
+const currentLang = getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html lang=`${SITE.lang ?? "en"}` class={`${scrollSmooth && "scroll-smooth"}`}>
+<html lang={currentLang} class={`${scrollSmooth && "scroll-smooth"}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -58,7 +62,7 @@ const structuredData = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- General Meta Tags -->
-    <title>{title}</title>
+    <title>{SITE.browserTitle}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
@@ -130,6 +134,7 @@ const structuredData = {
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
+    <LanguageSelector />
     <slot />
   </body>
 </html>

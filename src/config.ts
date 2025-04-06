@@ -4,6 +4,7 @@ export const SITE = {
   profile: "https://github.com/jeoste",
   desc: "Mon portfolio et blog personnel",
   title: "<span class='text-accent'>jeo</span>ffrey.<span class='text-accent'>ste</span>phan",
+  browserTitle: "jeoste", // Titre affiché dans l'onglet du navigateur
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,

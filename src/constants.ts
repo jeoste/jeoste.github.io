@@ -23,12 +23,6 @@ export const SOCIALS = [
     icon: IconLinkedin,
   },
   {
-    name: "Dev.to",
-    href: "https://dev.to/jeoste",
-    linkTitle: `${SITE.title} on Dev.to`,
-    icon: IconDevTo,
-  },
-  {
     name: "Mail",
     href: "mailto:jeoffrey.stephan.pro@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,

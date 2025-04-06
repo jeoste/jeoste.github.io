@@ -1,0 +1,61 @@
+---
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith('/en') ? 'en' : 'fr';
+---
+
+<div class="language-selector">
+  <a href={currentPath.replace('/en', '')} class={`flag-link ${currentLang === 'fr' ? 'active' : ''}`} title="Français">
+    <span class="flag">FR</span>
+  </a>
+  <a href={currentLang === 'fr' ? `/en${currentPath}` : currentPath} class={`flag-link ${currentLang === 'en' ? 'active' : ''}`} title="English">
+    <span class="flag">EN</span>
+  </a>
+</div>
+
+<style>
+  .language-selector {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .flag-link {
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .flag-link:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .flag-link.active {
+    opacity: 1;
+    pointer-events: none;
+    color: var(--color-accent);
+  }
+
+  .flag {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .language-selector {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+    
+    .flag {
+      font-size: 1rem;
+    }
+  }
+</style> 
