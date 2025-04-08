@@ -1,9 +1,14 @@
 ---
-layout: ../layouts/AboutLayout.astro
+layout: ../../layouts/AboutLayout.astro
 title: "About"
 ---
 
-I am a Data Consultant passionate about many fields, mainly IT and "data". This website serves as my personal portfolio and blog where I share my thoughts and projects.
+AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+
+This theme is aimed to be accessible out of the box. Light and dark mode are supported by
+default and additional color schemes can also be configured.
+
+This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
 
 <div>
   <img src="/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
@@ -11,20 +16,21 @@ I am a Data Consultant passionate about many fields, mainly IT and "data". This 
 
 ## Tech Stack
 
-This website is built with Astro, TypeScript, and TailwindCSS. The content is written in Markdown.
+This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
 
 ## Features
 
-Here are some features of this site:
+Here are certain features of this site.
 
-- Fully responsive and accessible
+- fully responsive and accessible
 - SEO-friendly
-- Light & dark mode
-- Fuzzy search
-- Super fast performance
-- Draft posts
-- Pagination
-- Sitemap & RSS feed
-- Highly customizable
+- light & dark mode
+- fuzzy search
+- super fast performance
+- draft posts
+- pagination
+- sitemap & rss feed
+- highly customizable
 
-If you want to get in touch, feel free to reach out via my [GitHub](https://github.com/jeoste) profile. 
+If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
+Or you can even give any feedback via my [email](mailto:contact@satnaing.dev). 

@@ -7,8 +7,10 @@ export const defaultLang = 'fr';
 
 export const ui = {
   fr: {
-    'nav.home': 'Accueil',
-    'nav.about': 'À propos',
+    'nav.home': '/accueil',
+    'nav.about': '/a-propos',
+    'nav.portfolio': '/portefolio',
+    'nav.articles': '/articles',
     'nav.blog': 'Blog',
     'nav.projects': 'Projets',
     'nav.contact': 'Contact',
@@ -25,8 +27,10 @@ export const ui = {
     'footer.allRightsReserved': 'Tous droits réservés'
   },
   en: {
-    'nav.home': 'Home',
+    'nav.home': '/home',
     'nav.about': 'About',
+    'nav.portfolio': '/portfolio',
+    'nav.articles': '/articles',
     'nav.blog': 'Blog',
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',

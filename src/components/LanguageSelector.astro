@@ -1,13 +1,17 @@
 ---
 const currentPath = Astro.url.pathname;
 const currentLang = currentPath.startsWith('/en') ? 'en' : 'fr';
+
+// Correctly determine target paths for language switching
+const frPath = currentPath.replace(/^\/en/, '');
+const enPath = currentLang === 'fr' ? `/en${currentPath}` : currentPath;
 ---
 
 <div class="language-selector">
-  <a href={currentPath.replace('/en', '')} class={`flag-link ${currentLang === 'fr' ? 'active' : ''}`} title="Français">
+  <a href={frPath} class={`flag-link ${currentLang === 'fr' ? 'active' : ''}`} title="Français">
     <span class="flag">FR</span>
   </a>
-  <a href={currentLang === 'fr' ? `/en${currentPath}` : currentPath} class={`flag-link ${currentLang === 'en' ? 'active' : ''}`} title="English">
+  <a href={enPath} class={`flag-link ${currentLang === 'en' ? 'active' : ''}`} title="English">
     <span class="flag">EN</span>
   </a>
 </div>
