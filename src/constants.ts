@@ -6,7 +6,6 @@ import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
-import IconDevTo from "@/assets/icons/IconDevTo.svg";
 import { SITE } from "@/config";
 
 export const SOCIALS = [
