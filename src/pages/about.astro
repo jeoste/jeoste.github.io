@@ -11,21 +11,20 @@ import { SITE } from "@/config";
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 
-const pageTitle = "Articles";
-const pageDesc = "Mes articles et réflexions";
+const pageTitle = "A propos";
+const pageDesc = "Une présentation s'impose";
 ---
 
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
     <div class="prose prose-lg prose-slate dark:prose-invert">
-      <p>Bienvenue dans la section "Articles". Ici, vous trouverez mes réflexions et analyses sur des sujets variés.</p>
+      <p>Je m'appelle Jeoffrey, j'ai 30 ans et je suis Consultant en données.</p>
+      <p>Avec 8 années d'expérience en ESN, j'ai pu travailler dans des domaines variés tels que les assurances, le bancaire, la logistique, l'industrie ou encore la vente en ligne</p>
+      <p>Durant ces années j'ai également pu acquérir, développer et perfectionner mes compétences dans le domaine du développement. Talend principalement mais aussi SQL, Java.</p>
+      <p>Sur la partie Talend, je possède les</p>
     </div>
-    <ul class="mt-8">
-      {sortedPosts.map(data => (
-        <Card variant="h3" {...data} />
-      ))}
-    </ul>
+
   </Main>
   <Footer />
 </Layout> 

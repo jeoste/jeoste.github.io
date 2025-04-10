@@ -15,7 +15,7 @@ export const ui = {
     'nav.projects': 'Projets',
     'nav.contact': 'Contact',
     'home.welcome': 'Bienvenue!',
-    'home.description': 'Consultant Data, passionné par de nombreux domaines, principalement le développement, les nouvelles technologies, la finance et le domaine de la "donnée" au sens général.',
+    'home.description': 'Sur ce site vous retrouverez mes projets (/portefolio), mes articles (/articles) et qui je suis (/a-propos).',
     'blog.title': 'Derniers articles',
     'blog.readMore': 'Lire la suite',
     'home.readMore': 'Lire les articles ou consulter le',

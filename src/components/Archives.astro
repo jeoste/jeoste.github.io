@@ -1,0 +1,79 @@
+import type { CollectionEntry } from "astro:content";
+import Card from "@/components/Card.astro";
+
+type BlogPost = CollectionEntry<"blog">;
+
+interface Props {
+  posts: BlogPost[];
+}
+
+const { posts } = Astro.props;
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+] as const;
+
+const yearGroups = posts.reduce((acc, post) => {
+  const year = post.data.pubDatetime.getFullYear().toString();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {} as Record<string, BlogPost[]>);
+
+const sortedYears = Object.entries(yearGroups).sort(([a], [b]) => Number(b) - Number(a));
+
+<div class="archives">
+  {
+    sortedYears.map(([year, yearPosts]) => {
+      const monthGroups = yearPosts.reduce((acc, post) => {
+        const month = post.data.pubDatetime.getMonth();
+        if (!acc[month]) {
+          acc[month] = [];
+        }
+        acc[month].push(post);
+        return acc;
+      }, {} as Record<number, BlogPost[]>);
+
+      const sortedMonths = Object.entries(monthGroups).sort(([a], [b]) => Number(b) - Number(a));
+
+      return (
+        <div class="year-group">
+          <span class="text-2xl font-bold">{year}</span>
+          <sup class="text-sm">{yearPosts.length}</sup>
+          {sortedMonths.map(([month, monthPosts]) => (
+            <div class="flex flex-col sm:flex-row">
+              <div class="mt-6 min-w-36 text-lg sm:my-6">
+                <span class="font-bold">{months[Number(month)]}</span>
+                <sup class="text-xs">{monthPosts.length}</sup>
+              </div>
+              <ul>
+                {monthPosts
+                  .sort(
+                    (a, b) =>
+                      new Date(b.data.pubDatetime).getTime() -
+                      new Date(a.data.pubDatetime).getTime()
+                  )
+                  .map(post => (
+                    <Card {...post} />
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      );
+    })
+  }
+</div> 
