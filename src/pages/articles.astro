@@ -12,14 +12,14 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 
 const pageTitle = "Articles";
-const pageDesc = "Mes articles et réflexions";
+const pageDesc = "My articles and thoughts";
 ---
 
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
     <div class="prose prose-lg prose-slate dark:prose-invert">
-      <p>Bienvenue dans la section "Articles". Ici, vous trouverez mes réflexions et analyses sur des sujets variés.</p>
+      <p>Welcome to the Articles section. Here you'll find my thoughts and analyses on various topics.</p>
     </div>
     <ul class="mt-8">
       {sortedPosts.map(data => (

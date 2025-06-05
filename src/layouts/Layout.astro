@@ -2,8 +2,6 @@
 import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
-import LanguageSelector from "@/components/LanguageSelector.astro";
-import { getLangFromUrl } from "@/utils/i18n";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -49,7 +47,7 @@ const structuredData = {
   ],
 };
 
-const currentLang = getLangFromUrl(Astro.url);
+const currentLang = "en";
 ---
 
 <!doctype html>
@@ -134,7 +132,6 @@ const currentLang = getLangFromUrl(Astro.url);
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
-    <LanguageSelector />
     <slot />
   </body>
 </html>

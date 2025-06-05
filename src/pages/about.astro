@@ -11,18 +11,18 @@ import { SITE } from "@/config";
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 
-const pageTitle = "A propos";
-const pageDesc = "Une présentation s'impose";
+const pageTitle = "About";
+const pageDesc = "A brief introduction";
 ---
 
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
     <div class="prose prose-lg prose-slate dark:prose-invert">
-      <p>Je suis Technical Lead, Entrepreneur, Investisseur et Trader.</p>
-      <p>Actuellement Consultant Data au sein de Data-Major.</p>
-      <p>Auparavant Technical Lead Talend chez Hardis-Group.</p>
-      <p>Basé à Séoul, Corée du Sud.</p>
+      <p>I am a Technical Lead, Entrepreneur, Investor, and Trader.</p>
+      <p>Currently working as a Data Consultant at Data-Major.</p>
+      <p>Previously Technical Lead Talend at Hardis-Group.</p>
+      <p>Based in Seoul, South Korea.</p>
     </div>
 
   </Main>

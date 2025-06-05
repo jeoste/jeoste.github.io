@@ -8,15 +8,11 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
-import { getLangFromUrl } from "@/utils/i18n";
 
 const { pathname } = Astro.url;
-const currentLang = getLangFromUrl(Astro.url);
 
-// Remove trailing slash and language prefix from current pathname if exists
-const currentPath = pathname
-  .replace(/\/$/, '') // Remove trailing slash
-  .replace(/^\/en/, ''); // Remove language prefix
+// Remove trailing slash from current pathname if exists
+const currentPath = pathname.replace(/\/$/, '');
 
 const isActive = (path: string) => {
   // Remove trailing slash from the provided path
@@ -47,7 +43,7 @@ const isActive = (path: string) => {
       class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"
     >
       <a
-        href={currentLang === 'en' ? '/en' : '/'}
+        href="/"
         class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
         set:html={SITE.title}
       >
@@ -76,30 +72,30 @@ const isActive = (path: string) => {
           ]}
         >
           <li class="col-span-2">
-            <a href={currentLang === 'en' ? '/en' : '/'} class:list={{ "active-nav": isActive("/") }}>
-              {currentLang === 'en' ? '/home' : '/accueil'}
+            <a href="/" class:list={{ "active-nav": isActive("/") }}>
+              /home
             </a>
           </li>
           <li class="col-span-2">
-            <a href={`${currentLang === 'en' ? '/en' : ''}/portfolio`} class:list={{ "active-nav": isActive("/portfolio") }}>
-              {currentLang === 'en' ? '/portfolio' : '/portefolio'}
+            <a href="/portfolio" class:list={{ "active-nav": isActive("/portfolio") }}>
+              /portfolio
             </a>
           </li>
           <li class="col-span-2">
-            <a href={`${currentLang === 'en' ? '/en' : ''}/articles`} class:list={{ "active-nav": isActive("/articles") }}>
-              {currentLang === 'en' ? '/articles' : '/articles'}
+            <a href="/articles" class:list={{ "active-nav": isActive("/articles") }}>
+              /articles
             </a>
           </li>
           <li class="col-span-2">
-            <a href={`${currentLang === 'en' ? '/en' : ''}/about`} class="whitespace-nowrap" class:list={{ "active-nav": isActive("/about") }}>
-              {currentLang === 'en' ? '/about' : '/a-propos'}
+            <a href="/about" class="whitespace-nowrap" class:list={{ "active-nav": isActive("/about") }}>
+              /about
             </a>
           </li>
           {
             SITE.showArchives && (
               <li class="col-span-2">
                 <LinkButton
-                  href={`${currentLang === 'en' ? '/en' : ''}/archives`}
+                  href="/archives"
                   class:list={[
                     "focus-outline flex justify-center p-3 sm:p-1",
                     {

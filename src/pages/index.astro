@@ -12,15 +12,12 @@ import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
-import { useTranslations } from "@/utils/i18n";
 
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-
-const t = useTranslations('fr');
 ---
 
 <Layout>
@@ -28,7 +25,7 @@ const t = useTranslations('fr');
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        {t('home.welcome')}
+        Welcome!
       </h1>
       <a
         target="_blank"
@@ -46,13 +43,22 @@ const t = useTranslations('fr');
       </a>
 
       <p>
-        {t('home.description')}
+        Data Consultant, passionate about many fields, mainly IT and "data".
+      </p>
+      <p class="mt-2">
+        Read the blog posts or check the
+        <LinkButton
+          class="underline decoration-dashed underline-offset-4 hover:text-accent"
+          href="https://github.com/satnaing/astro-paper#readme"
+        >
+          README
+        </LinkButton>
       </p>
       {
         // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
           <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Mes réseaux sociaux :</div>
+            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
             <Socials />
           </div>
         )
@@ -65,7 +71,7 @@ const t = useTranslations('fr');
       featuredPosts.length > 0 && (
         <>
           <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-semibold tracking-wide">A l'affiche</h2>
+            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
             <ul>
               {featuredPosts.map(data => (
                 <Card variant="h3" {...data} />
@@ -80,7 +86,7 @@ const t = useTranslations('fr');
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Articles récemment publiés</h2>
+          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
           <ul>
             {recentPosts.map(
               (data, index) =>
@@ -93,7 +99,7 @@ const t = useTranslations('fr');
 
     <div class="my-8 text-center">
       <LinkButton href="/articles">
-        Tous les articles
+        All Posts
         <IconArrowRight class="inline-block" />
       </LinkButton>
     </div>
