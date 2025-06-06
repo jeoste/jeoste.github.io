@@ -8,16 +8,23 @@ html[data-theme="light"] {
   --background: #fdfdfd;
   --foreground: #1E2129;
   --accent: #00BDD6;
+  /*--accent: #FFD700;*/
+  /*--accent: #FFA724;*/
   --muted: #e6e6e6;
-  --border: #ece9e9;
+  --border: #123524;
 }
 
 html[data-theme="dark"] {
-  --background: #1E2129;
+  --background: #123524;
+  /*business card color*/
+  /*--background: #1E2129;
+  avant en noir*/
   --foreground: #fdfdfd;
-  --accent: #FFA724;
+  --accent: #FFD700;
+  /*--accent: #FFA724;*/
   --muted: #343f60bf;
-  --border: #ab4b08;
+  --border: #FFD700;
+  /*--border: #ab4b08;*/
 }
 
 @theme inline {

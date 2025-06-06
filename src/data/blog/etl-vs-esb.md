@@ -1,16 +1,17 @@
 ---
 author: Jeoffrey Stéphan
 pubDatetime: 2024-02-29T01:08:52.737Z
-modDatetime: 2025-06-06T18:58:52.737Z
+modDatetime: 2025-06-05T19:18:52.737Z
 title: Data Flows ETL vs ESB | 5 Key Points to Choose the Right Solution
 tags:
-  - data
+  - data engineering
+  - data architecture
   - esb
   - etl
 description: Understanding the differences and making the right choice between ESB and ETL
 ---
 
-> This article is currently available in French. For my french friends : suivez ce lien : [Flux de données ETL vs ESB : 5 points clés pour choisir la solution adéquate](https://www.data-major.com/fr/etl-esb-comment-choisir/)
+> This article is currently available in French. Version sous ce lien --> [Flux de données ETL vs ESB : 5 points clés pour choisir la solution adéquate](https://www.data-major.com/fr/etl-esb-comment-choisir/)
 
 ## ETL vs ESB: 5 Key Points to Choose the Right Solution
 

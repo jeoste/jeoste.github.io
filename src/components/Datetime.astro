@@ -2,11 +2,14 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import relativeTime from "dayjs/plugin/relativeTime";
 import IconCalendar from "@/assets/icons/IconCalendar.svg";
 import { SITE } from "@/config";
+import { getRelativeTime } from "@/utils/relativeTime";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.extend(relativeTime);
 
 export interface Props {
   class?: string;
@@ -14,6 +17,7 @@ export interface Props {
   timezone: string | undefined;
   pubDatetime: string | Date;
   modDatetime: string | Date | undefined | null;
+  showRelative?: boolean;
 }
 
 const {
@@ -22,15 +26,24 @@ const {
   size = "sm",
   class: className = "",
   timezone: postTimezone,
+  showRelative = true,
 } = Astro.props;
 
 /* ========== Formatted Datetime ========== */
-const latestDatetime =
-  modDatetime && modDatetime > pubDatetime ? modDatetime : pubDatetime;
-const datetime = dayjs(latestDatetime).tz(postTimezone || SITE.timezone);
+const pubDate = dayjs(pubDatetime).tz(postTimezone || SITE.timezone);
+const modDate = modDatetime ? dayjs(modDatetime).tz(postTimezone || SITE.timezone) : null;
 
-const date = datetime.format("D MMM, YYYY"); // e.g., '22 Mar, 2025'
-const time = datetime.format("hh:mm A"); // e.g., '08:30 PM'
+const formatDate = (date: dayjs.Dayjs) => date.format("D MMM, YYYY"); // e.g., '22 Mar, 2025'
+const formatTime = (date: dayjs.Dayjs) => date.format("hh:mm A"); // e.g., '08:30 PM'
+
+// Utiliser notre fonction personnalisée pour l'affichage relatif
+const pubRelativeDate = getRelativeTime(pubDatetime);
+const modRelativeDate = modDatetime ? getRelativeTime(modDatetime) : null;
+
+// Toujours utiliser l'affichage relatif si showRelative est true
+const shouldShowRelative = showRelative;
+const displayPubDate = shouldShowRelative ? pubRelativeDate : formatDate(pubDate);
+const displayModDate = modDatetime && shouldShowRelative ? modRelativeDate : modDatetime ? formatDate(modDate!) : null;
 ---
 
 <div class:list={["flex items-end space-x-2 opacity-80", className]}>
@@ -40,19 +53,33 @@ const time = datetime.format("hh:mm A"); // e.g., '08:30 PM'
       { "scale-90": size === "sm" },
     ]}
   />
-  {
-    modDatetime && modDatetime > pubDatetime ? (
-      <span class:list={["text-sm italic", { "sm:text-base": size === "lg" }]}>
-        Updated:
-      </span>
-    ) : (
-      <span class="sr-only">Published:</span>
-    )
-  }
   <span class:list={["text-sm italic", { "sm:text-base": size === "lg" }]}>
-    <time datetime={datetime.toISOString()}>{date}</time>
-    <span aria-hidden="true"> | </span>
-    <span class="sr-only">&nbsp;at&nbsp;</span>
-    <span class="text-nowrap">{time}</span>
+    <span>Publication date:{" "}</span>
+    <time datetime={pubDate.toISOString()} title={`${formatDate(pubDate)} | ${formatTime(pubDate)}`}>
+      {displayPubDate}
+    </time>
+    {!shouldShowRelative && (
+      <>
+        <span aria-hidden="true"> | </span>
+        <span class="sr-only">&nbsp;at&nbsp;</span>
+        <span class="text-nowrap">{formatTime(pubDate)}</span>
+      </>
+    )}
+    {modDatetime && modDate && (
+      <>
+        <span class="mx-2">•</span>
+        <span>Last update:{" "}</span>
+        <time datetime={modDate.toISOString()} title={`${formatDate(modDate)} | ${formatTime(modDate)}`}>
+          {displayModDate}
+        </time>
+        {!shouldShowRelative && (
+          <>
+            <span aria-hidden="true"> | </span>
+            <span class="sr-only">&nbsp;at&nbsp;</span>
+            <span class="text-nowrap">{formatTime(modDate)}</span>
+          </>
+        )}
+      </>
+    )}
   </span>
 </div>
