@@ -10,6 +10,10 @@ import Hr from "@/components/Hr.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
+import IconKakao from "@/assets/icons/IconKakao.svg";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconMail from "@/assets/icons/IconMail.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
 
@@ -26,46 +30,74 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     <section id="hero" class="pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
         Welcome!
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        Data Consultant, passionate about many fields, mainly IT and "data".
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check the
-        <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
+        <a
+          target="_blank"
+          href="/rss.xml"
+          class="inline-block ml-2"
+          aria-label="rss feed"
+          title="RSS Feed"
         >
-          README
-        </LinkButton>
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
+          <IconRss
+            width={20}
+            height={20}
+            class="scale-125 stroke-accent stroke-3"
+          />
+          <span class="sr-only">RSS Feed</span>
+        </a>
+      </h1>
+      <div class="flex items-start gap-6 mb-6">
+        <img
+          src="/assets/profile.jpg"
+          alt="Photo de profil"
+          class="w-32 h-32 rounded-full object-cover border-4 border-accent"
+        />
+        <div class="flex-1">
+          <div class="mb-4">
+            <h2 class="text-2xl font-semibold mb-2">Jeoffrey Stéphan</h2>
+            <p class="text-lg text-accent">Data Consultant & Entrepreneur</p>
           </div>
-        )
-      }
-    </section>
+          <div class="mb-4">
+            <p class="text-gray-600 dark:text-gray-300">
+              With almost 10 years experience in Consulting, your Data problems are no longer ...
+            </p>
+          </div>
+          <div class="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-300">
+            
+            <div class="flex items-center gap-2">
+              <IconKakao class="h-5 w-5" />
+              <a href="https://open.kakao.com/jeoffrey" target="_blank" class="hover:text-accent transition-colors">
+                KakaoTalk : jeoffrey
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <IconLinkedin class="h-5 w-5" />
+              <a href="https://linkedin.com/in/jeoffrey-stephan/" target="_blank" class="hover:text-accent transition-colors">
+                linkedin.com/in/jeoffrey-stephan/
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <IconGitHub class="h-5 w-5" />
+              <a href="https://github.com/jeoste" target="_blank" class="hover:text-accent transition-colors">
+                github.com/jeoste
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <IconMail class="h-5 w-5" />
+              <a href="mailto:jeoffrey.stephan@gmail.com" target="_blank" class="hover:text-accent transition-colors">
+                jeoffrey.stephan@gmail.com
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              </svg>
+              <span>Seoul, South Korea | Lyon, France</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <Hr />
+      <Hr />
 
     {
       featuredPosts.length > 0 && (
