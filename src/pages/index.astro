@@ -22,6 +22,29 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+// Current projects for homepage
+const currentProjects = [
+  {
+    id: "data-consulting",
+    collection: "portfolio",
+    data: {
+      title: "Data Consultant",
+      description: "Clients are french & european companies. <br>The mission is to synchronize their business applications to the information system in order to optimize their supply chain, logistics and customer service."
+
+    },
+    slug: "/portfolio/data-consulting"
+  },
+  {
+    id: "entrepreneurship",
+    collection: "portfolio",
+    data: {
+      title: "Startup & Entrepreneurship",
+      description: "Developing a Data Omniscience Platform for B2B companies. <br>Know what, where, when and why your data contains errors or your dataflows are not working as expected."
+    },
+    slug: "/portfolio/entrepreneurship"
+  }
+];
 ---
 
 <Layout>
@@ -66,7 +89,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
             <div class="flex items-center gap-2">
               <IconKakao class="h-5 w-5" />
               <a href="https://open.kakao.com/jeoffrey" target="_blank" class="hover:text-accent transition-colors">
-                KakaoTalk : jeoffrey
+                Kakao ID : jeoffrey
               </a>
             </div>
             <div class="flex items-center gap-2">
@@ -91,7 +114,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
               </svg>
-              <span>Seoul, South Korea | Lyon, France</span>
+              <span>Seoul, South Korea & Remote</span>
             </div>
           </div>
         </div>
@@ -99,21 +122,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
       <Hr />
 
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-            <ul>
-              {featuredPosts.map(data => (
-                <Card variant="h3" {...data} />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
 
     {
       recentPosts.length > 0 && (
@@ -135,6 +143,32 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <IconArrowRight class="inline-block" />
       </LinkButton>
     </div>
+
+    <Hr />
+
+    {
+      currentProjects.length > 0 && (
+        <section id="current-projects" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Current Projects</h2>
+          <ul class="space-y-6">
+            {currentProjects.map((project) => (
+              <li class="my-6">
+                <a
+                  href={project.slug}
+                  class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+                >
+                  <h3 class="text-lg font-medium decoration-dashed hover:underline">
+                    {project.data.title}
+                  </h3>
+                </a>
+                <p class="text-gray-600 dark:text-gray-300" set:html={project.data.description}></p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
   </main>
   <Footer />
 </Layout>
