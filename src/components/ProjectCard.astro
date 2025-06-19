@@ -1,0 +1,19 @@
+---
+// ProjectCard.astro
+// Un composant pour présenter un projet avec une image et du texte
+export interface Props {
+  title: string;
+  description: string;
+  image: string; // chemin relatif vers le .png
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<div class="project-card flex flex-col md:flex-row gap-6 items-center border border-border rounded-lg p-6 my-8 bg-muted/30">
+  <img src={image} alt={title} class="w-48 h-48 object-cover rounded shadow-md" loading="lazy" />
+  <div>
+    <h2 class="text-xl font-bold mb-2">{title}</h2>
+    <p class="text-base text-foreground/90">{description}</p>
+  </div>
+</div>
