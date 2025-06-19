@@ -86,6 +86,11 @@ const isActive = (path: string) => {
               /articles
             </a>
           </li>
+          <li class="col-span-2">
+            <a href="/stack" class:list={{ "active-nav": isActive("/stack") }}>
+              /stack
+            </a>
+          </li>
 
           {
             SITE.showArchives && (
