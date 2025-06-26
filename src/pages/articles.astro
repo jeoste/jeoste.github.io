@@ -6,7 +6,6 @@ import Footer from "@/components/Footer.astro";
 import Main from "@/layouts/Main.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
-import { SITE } from "@/config";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);

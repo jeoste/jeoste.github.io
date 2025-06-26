@@ -5,7 +5,7 @@ export const SITE = {
   desc: "My personal website",
   title: "<span class='text-accent'>jeo</span>ffrey.<span class='text-accent'>sté</span>phan",
   browserTitle: "jeoste", // Titre affiché dans l'onglet du navigateur
-  //ogImage: "astropaper-og.jpg",
+  ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
