@@ -5,27 +5,169 @@ import Footer from "@/components/Footer.astro";
 import Main from "@/layouts/Main.astro";
 import { SITE } from "@/config";
 
-const pageTitle = "Portfolio";
-const pageDesc = "Discover my projects and achievements";
+const pageTitle = "";
+const pageDesc =
+  ">This section showcases the projects I've done or worked on through the years";
 ---
 
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
     <div class="prose prose-lg prose-slate dark:prose-invert">
-      <p>Welcome to my portfolio. This section showcases my projects and achievements.</p>
+      <h2>Portfolio Contents</h2>
+      <ul>
+        <li>
+          <a href="#datahub" class="text-primary hover:underline"
+            >Datahub - A modern Data Integration Architecture for complex
+            systems</a>
+        </li>
+        <li>
+          <a href="#p2p" class="text-primary hover:underline"
+            >P2P - A legacy Data Integration Architecture for simple systems</a>
+        </li>
+        <li>
+          <a href="#api-scenario" class="text-primary hover:underline"
+            >JIRA Automation - A REST API scenarios in database</a>
+        </li>
+        <!-- Add more projects here as you expand your portfolio -->
+      </ul>
     </div>
     <section class="mt-12 flex flex-col gap-16">
-      <div class="flex flex-col items-center gap-8">
+      <div class="flex flex-col items-center gap-8" id="datahub">
         <div class="w-full max-w-4xl">
-          <img src="/assets/images/datahub_excalidraw.png" alt="Datahub" class="w-full rounded-lg shadow-lg border border-border" loading="lazy" />
+          <h2 class="mb-4 text-2xl font-bold">Datahub Architecture</h2>
+          <p class="text-lg text-foreground/90">
+            This diagram shows my vision of a "datahub". Any person working in
+            Data field, using dataflows, will have is own definition of what a
+            datahub is.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            Mine is describing the "core" functionalities : one place where all
+            the data goes from source to target, processed, enriched,
+            synchronized, stored and shown along the way.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            The applications are connected to the datahub. The hub is the
+            messenger from the source to the target applications.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            The benefit of this architecture is reducting the number of
+            applications to maintain, enhancing the security, data quality and
+            data consistency.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            The drawback of that, is the complexity of the architecture. Each
+            integration of a new application needs to follow the exact process
+            and architecture.
+          </p>
         </div>
         <div class="w-full max-w-4xl">
-          <h2 class="text-2xl font-bold mb-4">Datahub</h2>
-          <p class="text-lg text-foreground/90">This diagram shows my vision of a "datahub". Any person working in Data field, using dataflows, will have is own definition of what a datahub is.</p>
-          <p class="text-lg text-foreground/90">Mine is describing the "core" functionalities : one place where all the data goes from source to target, processed, enriched, synchronized, stored and shown along the way.</p>
+          <img
+            src="/assets/images/datahub_excalidraw.png"
+            alt="Datahub architecture"
+            class="w-full rounded-lg border border-border shadow-lg"
+            loading="lazy"
+          />
         </div>
       </div>
+
+      <div class="flex flex-col items-center gap-8" id="p2p">
+        <div class="w-full max-w-4xl">
+          <h2 class="mb-4 text-2xl font-bold">P2P Architecture</h2>
+          <p class="text-lg text-foreground/90">
+            Here is what we can find as "data integration" system in the market.
+            This example shows the business logic with ERP and CRM
+          </p>
+          <p class="text-lg text-foreground/90">
+            ERP is the source or the target. CRM is the source or the target.
+          </p>
+          <br />
+
+          <div class="w-full max-w-4xl">
+            <img
+              src="/assets/images/before_datahub_excalidraw.png"
+              alt="P2P architecture"
+              class="w-full rounded-lg border border-border shadow-lg"
+              loading="lazy"
+            />
+          </div>
+
+          <p class="text-lg text-foreground/90">
+            This P2P (peer-2-peer) architecture is not scalable and not
+            flexible. It is not considered as "architecture" either because of
+            the simplicity of the flow.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            The benefit of this architecture is that it is easy to implement,
+            easy to understand and faster to go in production. It is useful for
+            small system, with few applications and few dataflows.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            The drawback of that, is the maintenance, the scalability, the data
+            consistence is poor and business rules from applications can be
+            duplicated.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-8" id="api-scenario">
+        <div class="w-full max-w-4xl">
+          <h3 class="mb-4 text-2xl font-bold">REST API Scenarios in database</h3>
+          <p class="text-lg text-foreground/90">
+            This diagram shows a REST API scenario stored in a database to
+            automate the process of creating JIRA issues.
+          </p>
+          <div class="w-full max-w-4xl">
+            <img
+              src="/assets/images/jira-json-scenario.png"
+              alt="JIRA JSON Scenario"
+              class="w-full rounded-lg border border-border shadow-lg"
+              loading="lazy"
+            />
+          </div>
+          <p class="text-lg text-foreground/90">
+            A project I worked on required several steps to automate the
+            creation of JIRA issues. Each JIRA status had to follow a specific
+            workflow, with mandatory fields at each transition.
+          </p>
+          <p class="text-lg text-foreground/90">
+            The solution was to define scenarios in a table, each representing a
+            specific transition in the workflow.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            Scenario 1: Transition from <u>Open</u> to <u>In Progress</u>.
+          </p>
+          <p class="text-lg text-foreground/90">
+            Scenario 2: Transition from <u>In Progress</u> to <u>Done</u>.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            When a user submits a new case and clicks "Validate" in the
+            interface, the system checks the database to determine the current
+            and next statuses.
+          </p>
+          <p class="text-lg text-foreground/90">
+            With these two pieces of information, the API retrieves the JSON
+            associated with the relevant scenario and updates the JIRA issue
+            accordingly.
+          </p>
+          <br />
+          <p class="text-lg text-foreground/90">
+            By designing the solution this way, if a workflow contains five
+            steps, each step is handled individually by triggering the
+            corresponding JSON. There are no chained scenarios; the workflow is
+            defined by JIRA and maintained in the database.
+          </p>
+        </div>
+      </div>
+
       <!-- Duplique ce bloc pour chaque projet à mettre en avant -->
     </section>
   </Main>

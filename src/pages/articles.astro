@@ -11,21 +11,21 @@ import { SITE } from "@/config";
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 
-const pageTitle = "Articles";
-const pageDesc = "My articles and thoughts";
+const pageTitle = "";
+const pageDesc = ">The articles I've written or thoughts I've shared";
 ---
 
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
     <div class="prose prose-lg prose-slate dark:prose-invert">
-      <p>Welcome to the Articles section. Here you'll find my thoughts and analyses on various topics.</p>
+      <h2>Blog Posts & Insights</h2>
     </div>
+
     <ul class="mt-8">
-      {sortedPosts.map(data => (
-        <Card variant="h3" {...data} />
-      ))}
+      {sortedPosts.map(data => <Card variant="h3" {...data} />)}
     </ul>
   </Main>
   <Footer />
-</Layout> 
+</Layout>
+

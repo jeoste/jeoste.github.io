@@ -5,29 +5,352 @@ import Footer from "@/components/Footer.astro";
 import Main from "@/layouts/Main.astro";
 import { SITE } from "@/config";
 
-const pageTitle = "Vault";
-const pageDesc = "Tools I'm using or I recommend.";
+const pageTitle = "";
+const pageDesc = ">The tools I'm using or I recommend";
 ---
 
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
     <div class="prose prose-lg prose-slate dark:prose-invert">
-      <p>For the IT :</p>
-      <p>Apidog (Europe hosting) : API testing and documentation.</p>
-      <p>Obsidian : Personal Knowledge Management (PKM)</p>
-      <p>Cursor : create prototype and transform ideas into concrete solutions.</p>
-      <p>VSCode : all temporary files, codes, testing</p>
-      <p>Notepad++ : old but gold</p>
-      <p>FileZilla : FTP client for transferring files</p>
-      <p>WinSCP : Transfer files from Windows to servers (Linux)</p>
-      <p>mRemoteNG : Access all servers with command lines</p>
-      <p>MobaXTerm : Access all servers with command lines</p>
-      <p>Linear : one platform for all projects</p>
-      <p>For trading :</p>
-      <p>Insillico Terminal : most professional tool</p>
-      <p>TradingView</p>
+      <h2>Vault</h2>
     </div>
+
+    <!-- IT Tools Section -->
+    <section class="mb-12">
+      <h2 class="mb-6 text-center text-2xl font-bold">
+        Development & IT Tools
+      </h2>
+      <div
+        class="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+      >
+
+      <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://talend.com" target="_blank">
+              <img
+                src="/assets/images/logos/talend.png"
+                alt="Talend logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://talend.com"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">Qlik Talend</a
+              >
+              <p class="text-sm text-gray-100">All-in-one platform for data</p>
+            </div>
+          </div>
+          <p class="text-gray-100">
+            ETL and ESB tools for building event-driven dataflows, data pipelines, and batch processing workflows.
+          </p>
+        </div>
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://apidog.com" target="_blank">
+              <img
+                src="/assets/images/logos/apidog.jpg"
+                alt="Apidog logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://apidog.com"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">Apidog</a
+              >
+              <p class="text-sm text-gray-100">Europe hosting</p>
+            </div>
+          </div>
+          <p class="text-gray-100">
+            API testing <u>and</u> documentation inside the same software.
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://obsidian.md" target="_blank">
+              <img
+                src="/assets/images/logos/obsidian.png"
+                alt="Obsidian logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://obsidian.md"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">Obsidian</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">
+            Personal Knowledge Management (PKM) - Favorite tool to capture
+            ideas and thoughts.
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://cursor.com" target="_blank">
+              <img
+                src="/assets/images/logos/cursor.png"
+                alt="Cursor logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://cursor.com"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">Cursor</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">
+            Perfect editor to create prototype and transform ideas into
+            solutions.
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://code.visualstudio.com/" target="_blank">
+              <img
+                src="/assets/images/logos/vscode.png"
+                alt="VSCode logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://https://code.visualstudio.com/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">VSCode</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">Go to code editor</p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://notepad-plus-plus.org/" target="_blank">
+              <img
+                src="/assets/images/logos/notepadpp.png"
+                alt="Notepad++ logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://notepad-plus-plus.org/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">Notepad++</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">Old but gold, text editor</p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://filezilla-project.org/" target="_blank">
+              <img
+                src="/assets/images/logos/filezilla.png"
+                alt="FileZilla logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://filezilla-project.org/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">FileZilla</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">
+            FTP Client to transfer files to and from an FTP Server
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://winscp.net/eng/index.php" target="_blank">
+              <img
+                src="/assets/images/logos/winscp.png"
+                alt="WinSCP logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://winscp.net/eng/index.php"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">WinSCP</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">
+            Secure file transfers from Windows to remote servers (ex: Linux)
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://mremoteng.org/" target="_blank">
+              <img
+                src="/assets/images/logos/mremoteng.png"
+                alt="mRemoteNG logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://mremoteng.org/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">mRemoteNG</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">
+            Multo-Remote connections manager. A better UI than PuTTY.
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://mobaxterm.mobatek.net/" target="_blank">
+              <img
+                src="/assets/images/logos/mobaxterm.jpg"
+                alt="MobaXTerm logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://mobaxterm.mobatek.net/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">MobaXTerm</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">Alternative to mRemoteNG.</p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://linear.app/homepage" target="_blank">
+              <img
+                src="/assets/images/logos/linear.png"
+                alt="Linear logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://linear.app/homepage"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">Linear</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">One platform for all projects</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trading Tools Section -->
+    <section class="mb-12">
+      <h2 class="mb-6 text-center text-2xl font-bold">Trading Tools</h2>
+      <div class="not-prose grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://insilicoterminal.com/" target="_blank">
+              <img
+                src="/assets/images/logos/insilico.jpg"
+                alt="Insillico Terminal logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://insilicoterminal.com/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white"
+                >Insillico Terminal</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">
+            Tool to trade orders for all trading platforms.
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-white p-6 shadow-md"
+          style="background-color: #ab921b;"
+        >
+          <div class="mb-3 flex items-start gap-4">
+            <a href="https://www.tradingview.com/" target="_blank">
+              <img
+                src="/assets/images/logos/tradingview.png"
+                alt="TradingView logo"
+                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+              />
+            </a>
+            <div class="min-w-0 flex-1">
+              <a
+                href="https://www.tradingview.com/"
+                target="_blank"
+                class="mb-1 text-lg font-semibold text-white">TradingView</a
+              >
+            </div>
+          </div>
+          <p class="text-gray-100">Advanced charting and analysis platform</p>
+        </div>
+      </div>
+    </section>
   </Main>
-  <Footer />
-</Layout> 
+</Layout>
+<Footer />

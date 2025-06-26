@@ -30,20 +30,21 @@ const currentProjects = [
     collection: "portfolio",
     data: {
       title: "Data Consultant",
-      description: "Clients are french & european companies. <br>The mission is to synchronize their business applications to the information system in order to optimize their supply chain, logistics and customer service."
-
+      description:
+        "Clients are french & european companies. <br>The mission is to synchronize their business applications to the information system in order to optimize their supply chain, logistics and customer service.",
     },
-    slug: "/portfolio/data-consulting"
+    slug: "/portfolio/data-consulting",
   },
   {
     id: "entrepreneurship",
     collection: "portfolio",
     data: {
       title: "Startup & Entrepreneurship",
-      description: "Developing a Data Omniscience Platform for B2B companies. <br>Know what, where, when and why your data contains errors or your dataflows are not working as expected."
+      description:
+        "Developing a Data Omniscience Platform for B2B companies. <br>Know what, where, when and why your data contains errors, your dataflows are failing, your information system has issues and how to solve them.",
     },
-    slug: "/portfolio/entrepreneurship"
-  }
+    slug: "/portfolio/entrepreneurship",
+  },
 ];
 ---
 
@@ -56,7 +57,7 @@ const currentProjects = [
         <a
           target="_blank"
           href="/rss.xml"
-          class="inline-block ml-2"
+          class="ml-2 inline-block"
           aria-label="rss feed"
           title="RSS Feed"
         >
@@ -68,61 +69,88 @@ const currentProjects = [
           <span class="sr-only">RSS Feed</span>
         </a>
       </h1>
-      <div class="flex items-start gap-6 mb-6">
+      <div class="mb-6 flex items-start gap-6">
         <img
           src="/assets/profile.jpg"
           alt="Photo de profil"
-          class="w-32 h-32 rounded-full object-cover border-4 border-accent"
+          class="h-32 w-32 rounded-full border-4 border-accent object-cover"
         />
         <div class="flex-1">
           <div class="mb-4">
-            <h2 class="text-2xl font-semibold mb-2">Jeoffrey Stéphan</h2>
+            <h2 class="mb-2 text-2xl font-semibold">Jeoffrey Stéphan</h2>
             <p class="text-lg text-accent">Data Consultant & Entrepreneur</p>
           </div>
           <div class="mb-4">
             <p class="text-gray-600 dark:text-gray-300">
-              With almost 10 years experience in Consulting, your Data problems are no longer ...
+              With almost 10 years experience in Consulting, your Data problems
+              are no longer ...
             </p>
           </div>
-          <div class="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-300">
-            
+          <div
+            class="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-300"
+          >
             <div class="flex items-center gap-2">
               <IconKakao class="h-5 w-5" />
-              <a href="https://open.kakao.com/jeoffrey" target="_blank" class="hover:text-accent transition-colors">
+              <a
+                href="https://open.kakao.com/jeoffrey"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
                 Kakao ID : jeoffrey
               </a>
             </div>
             <div class="flex items-center gap-2">
               <IconLinkedin class="h-5 w-5" />
-              <a href="https://linkedin.com/in/jeoffrey-stephan/" target="_blank" class="hover:text-accent transition-colors">
+              <a
+                href="https://linkedin.com/in/jeoffrey-stephan/"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
                 linkedin.com/in/jeoffrey-stephan/
               </a>
             </div>
             <div class="flex items-center gap-2">
               <IconGitHub class="h-5 w-5" />
-              <a href="https://github.com/jeoste" target="_blank" class="hover:text-accent transition-colors">
+              <a
+                href="https://github.com/jeoste"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
                 github.com/jeoste
               </a>
             </div>
             <div class="flex items-center gap-2">
               <IconMail class="h-5 w-5" />
-              <a href="mailto:jeoffrey.stephan@gmail.com" target="_blank" class="hover:text-accent transition-colors">
+              <a
+                href="mailto:jeoffrey.stephan@gmail.com"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
                 jeoffrey.stephan@gmail.com
               </a>
             </div>
             <div class="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"></path>
               </svg>
               <span>Seoul, South Korea & Remote</span>
             </div>
-            <div class="flex items-center gap-2 mt-4">              <a
-                href="/download/cv-jeoste.pdf"
+            <div class="mt-4 flex items-center gap-2">
+              <a
+                href="https://rxresu.me/jeoste/en-data-consultant"
                 target="_blank"
-                class="inline-flex items-center px-4 py-2 bg-transparent text-accent hover:bg-accent/10 rounded-lg transition-colors"
+                class="inline-flex items-center rounded-lg bg-transparent px-4 py-2 text-accent transition-colors hover:bg-accent/10"
               >
-                Download my resume
-                <IconArrowRight class="w-4 h-4 ml-2" />
+                Resume
+                <IconArrowRight class="ml-2 h-4 w-4" />
               </a>
             </div>
           </div>
@@ -131,63 +159,68 @@ const currentProjects = [
 
       <Hr />
 
+      {
+        recentPosts.length > 0 && (
+          <section id="recent-posts" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+            <ul>
+              {recentPosts.map(
+                (data, index) =>
+                  index < SITE.postPerIndex && <Card variant="h3" {...data} />
+              )}
+            </ul>
+          </section>
+        )
+      }
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
+      <div class="my-8 text-center">
+        <LinkButton href="/articles">
+          All Posts
+          <IconArrowRight class="inline-block" />
+        </LinkButton>
+      </div>
 
-    <div class="my-8 text-center">
-      <LinkButton href="/articles">
-        All Posts
-        <IconArrowRight class="inline-block" />
-      </LinkButton>
-    </div>
+      <Hr />
 
-    <Hr />
-
-    {
-      currentProjects.length > 0 && (
-        <section id="current-projects" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Current Projects</h2>
-          <ul class="space-y-6">
-            {currentProjects.map((project) => (
-              <li class="my-6">
-                <a
-                  href={project.slug}
-                  class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
-                >
-                  <h3 class="text-lg font-medium decoration-dashed hover:underline">
-                    {project.data.title}
-                  </h3>
-                </a>
-                <p class="text-gray-600 dark:text-gray-300" set:html={project.data.description}></p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
+      {
+        currentProjects.length > 0 && (
+          <section id="current-projects" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">
+              Current Projects
+            </h2>
+            <ul class="space-y-6">
+              {currentProjects.map(project => (
+                <li class="my-6">
+                  <a
+                    href={project.slug}
+                    class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+                  >
+                    <h3 class="text-lg font-medium decoration-dashed hover:underline">
+                      {project.data.title}
+                    </h3>
+                  </a>
+                  <p
+                    class="text-gray-600 dark:text-gray-300"
+                    set:html={project.data.description}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </section>
+    <Footer />
   </main>
-  <Footer />
-</Layout>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
-      sessionStorage.setItem("backUrl", "/");
-    }
-  });
-</script>
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const indexLayout = (
+        document.querySelector("#main-content") as HTMLElement
+      )?.dataset?.layout;
+      if (indexLayout) {
+        sessionStorage.setItem("backUrl", "/");
+      }
+    });
+  </script>
+</Layout>
