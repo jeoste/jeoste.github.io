@@ -26,12 +26,9 @@ export default defineConfig({
       wrap: true,
     },
   },
-  experimental: {
-    responsiveImages: true
-  },
   image: {
     // Used for all Markdown images and Image/Picture components
-    experimentalLayout: "constrained",
+    layout: "constrained",
   },
   vite: {
     plugins: [tailwindcss()],
