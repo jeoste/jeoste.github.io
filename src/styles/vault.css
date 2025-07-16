@@ -19,7 +19,7 @@
   transform: translateY(-2px) scale(1.02);
 }
 .vault-card-title {
-  color: hsl(265, 80%, 48%); /* Violet accent */
+  color: hsl(200, 100%, 45%); /* Bleu ciel accent */
 }
 html[data-theme="dark"] .vault-card {
   background: hsl(155, 30%, 13%); /* Vert foncé profond, cohérent avec le dark mode global */

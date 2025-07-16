@@ -44,7 +44,7 @@ html[data-theme="dark"] {
     @apply border-border outline-accent/75;
     scrollbar-width: auto;
     scrollbar-color: var(--color-muted) transparent;
-    transition: color 0.2s, background 0.8s, box-shadow 0.5s, border 0.5s;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s;
   }
   html {
     @apply overflow-y-scroll scroll-smooth;
@@ -60,7 +60,7 @@ html[data-theme="dark"] {
   a,
   button {
     @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
-    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s;
   }
   a:hover,
   button:hover {
