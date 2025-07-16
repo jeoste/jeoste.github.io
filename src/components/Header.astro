@@ -26,7 +26,9 @@ const isActive = (path: string) => {
 };
 ---
 
-<header>
+<header
+  style="background: transparent;"
+>
   <a
     id="skip-to-content"
     href="#main-content"
@@ -40,7 +42,7 @@ const isActive = (path: string) => {
   >
     <div
       id="top-nav-wrap"
-      class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"
+      class="relative flex w-full items-baseline justify-between p-4 sm:items-center sm:py-6"
     >
       <a
         href="/"
@@ -72,22 +74,22 @@ const isActive = (path: string) => {
           ]}
         >
           <li class="col-span-2">
-            <a href="/" class:list={{ "active-nav": isActive("/") }}>
+            <a href="/" class:list={{ "active-nav": isActive("/") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
               /home
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/portfolio" class:list={{ "active-nav": isActive("/portfolio") }}>
+            <a href="/portfolio" class:list={{ "active-nav": isActive("/portfolio") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
               /portfolio
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/articles" class:list={{ "active-nav": isActive("/articles") }}>
+            <a href="/articles" class:list={{ "active-nav": isActive("/articles") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
               /articles
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/vault" class:list={{ "active-nav": isActive("/vault") }}>
+            <a href="/vault" class:list={{ "active-nav": isActive("/vault") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
               /vault
             </a>
           </li>

@@ -8,6 +8,10 @@ const pageTitle = "";
 const pageDesc = ">The tools I'm using or I recommend";
 ---
 
+<style is:global>
+  @import "../styles/vault.css";
+</style>
+
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
@@ -24,35 +28,30 @@ const pageDesc = ">The tools I'm using or I recommend";
         class="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
       >
 
-      <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
-          <div class="mb-3 flex items-start gap-4">
-            <a href="https://talend.com" target="_blank">
-              <img
-                src="/assets/images/logos/talend.png"
-                alt="Talend logo"
-                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
-              />
-            </a>
-            <div class="min-w-0 flex-1">
-              <a
-                href="https://talend.com"
-                target="_blank"
-                class="mb-1 text-lg font-semibold text-white">Qlik Talend</a
-              >
-              <p class="text-sm text-gray-100">All-in-one platform for data</p>
-            </div>
+      <div class="vault-card">
+        <div class="mb-3 flex items-start gap-4">
+          <a href="https://talend.com" target="_blank">
+            <img
+              src="/assets/images/logos/talend.png"
+              alt="Talend logo"
+              class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
+            />
+          </a>
+          <div class="min-w-0 flex-1">
+            <a
+              href="https://talend.com"
+              target="_blank"
+              class="vault-card-title mb-1 text-lg font-semibold"
+            >Qlik Talend</a
+            >
+            <p class="text-sm opacity-80">All-in-one platform for data</p>
           </div>
-          <p class="text-gray-100">
-            ETL and ESB tools for building event-driven dataflows, data pipelines, and batch processing workflows.
-          </p>
         </div>
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <p class="opacity-90">
+          ETL and ESB tools for building event-driven dataflows, data pipelines, and batch processing workflows.
+        </p>
+      </div>
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://apidog.com" target="_blank">
               <img
@@ -65,20 +64,18 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://apidog.com"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">Apidog</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >Apidog</a
               >
-              <p class="text-sm text-gray-100">Europe hosting</p>
+              <p class="text-sm opacity-80">Europe hosting</p>
             </div>
           </div>
-          <p class="text-gray-100">
+          <p class="opacity-90">
             API testing <u>and</u> documentation inside the same software.
           </p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://obsidian.md" target="_blank">
               <img
@@ -91,20 +88,18 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://obsidian.md"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">Obsidian</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >Obsidian</a
               >
             </div>
           </div>
-          <p class="text-gray-100">
+          <p class="opacity-90">
             Personal Knowledge Management (PKM) - Favorite tool to capture
             ideas and thoughts.
           </p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://cursor.com" target="_blank">
               <img
@@ -117,20 +112,18 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://cursor.com"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">Cursor</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >Cursor</a
               >
             </div>
           </div>
-          <p class="text-gray-100">
+          <p class="opacity-90">
             Perfect editor to create prototype and transform ideas into
             solutions.
           </p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://code.visualstudio.com/" target="_blank">
               <img
@@ -143,17 +136,15 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://https://code.visualstudio.com/"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">VSCode</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >VSCode</a
               >
             </div>
           </div>
-          <p class="text-gray-100">Go to code editor</p>
+          <p class="opacity-90">Go to code editor</p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://notepad-plus-plus.org/" target="_blank">
               <img
@@ -166,17 +157,15 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://notepad-plus-plus.org/"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">Notepad++</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >Notepad++</a
               >
             </div>
           </div>
-          <p class="text-gray-100">Old but gold, text editor</p>
+          <p class="opacity-90">Old but gold, text editor</p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://filezilla-project.org/" target="_blank">
               <img
@@ -189,19 +178,17 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://filezilla-project.org/"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">FileZilla</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >FileZilla</a
               >
             </div>
           </div>
-          <p class="text-gray-100">
+          <p class="opacity-90">
             FTP Client to transfer files to and from an FTP Server
           </p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://winscp.net/eng/index.php" target="_blank">
               <img
@@ -214,19 +201,17 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://winscp.net/eng/index.php"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">WinSCP</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >WinSCP</a
               >
             </div>
           </div>
-          <p class="text-gray-100">
+          <p class="opacity-90">
             Secure file transfers from Windows to remote servers (ex: Linux)
           </p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://mremoteng.org/" target="_blank">
               <img
@@ -239,19 +224,17 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://mremoteng.org/"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">mRemoteNG</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >mRemoteNG</a
               >
             </div>
           </div>
-          <p class="text-gray-100">
+          <p class="opacity-90">
             Multo-Remote connections manager. A better UI than PuTTY.
           </p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://mobaxterm.mobatek.net/" target="_blank">
               <img
@@ -264,17 +247,15 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://mobaxterm.mobatek.net/"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">MobaXTerm</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >MobaXTerm</a
               >
             </div>
           </div>
-          <p class="text-gray-100">Alternative to mRemoteNG.</p>
+          <p class="opacity-90">Alternative to mRemoteNG.</p>
         </div>
 
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://linear.app/homepage" target="_blank">
               <img
@@ -287,11 +268,12 @@ const pageDesc = ">The tools I'm using or I recommend";
               <a
                 href="https://linear.app/homepage"
                 target="_blank"
-                class="mb-1 text-lg font-semibold text-white">Linear</a
+                class="vault-card-title mb-1 text-lg font-semibold"
+              >Linear</a
               >
             </div>
           </div>
-          <p class="text-gray-100">One platform for all projects</p>
+          <p class="opacity-90">One platform for all projects</p>
         </div>
       </div>
     </section>
@@ -300,53 +282,27 @@ const pageDesc = ">The tools I'm using or I recommend";
     <section class="mb-12">
       <h2 class="mb-6 text-center text-2xl font-bold">Trading Tools</h2>
       <div class="not-prose grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://insilicoterminal.com/" target="_blank">
-              <img
-                src="/assets/images/logos/insilico.jpg"
-                alt="Insillico Terminal logo"
-                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
-              />
+              <img src="/assets/images/logos/insilico.jpg" alt="Insillico Terminal logo" class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm" />
             </a>
             <div class="min-w-0 flex-1">
-              <a
-                href="https://insilicoterminal.com/"
-                target="_blank"
-                class="mb-1 text-lg font-semibold text-white"
-                >Insillico Terminal</a
-              >
+              <a href="https://insilicoterminal.com/" target="_blank" class="vault-card-title mb-1 text-lg font-semibold">Insillico Terminal</a>
             </div>
           </div>
-          <p class="text-gray-100">
-            Tool to trade orders for all trading platforms.
-          </p>
+          <p class="opacity-90">Tool to trade orders for all trading platforms.</p>
         </div>
-
-        <div
-          class="rounded-lg border border-white p-6 shadow-md"
-          style="background-color: #ab921b;"
-        >
+        <div class="vault-card">
           <div class="mb-3 flex items-start gap-4">
             <a href="https://www.tradingview.com/" target="_blank">
-              <img
-                src="/assets/images/logos/tradingview.png"
-                alt="TradingView logo"
-                class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm"
-              />
+              <img src="/assets/images/logos/tradingview.png" alt="TradingView logo" class="h-12 w-12 flex-shrink-0 rounded-md bg-white object-contain p-1 shadow-sm" />
             </a>
             <div class="min-w-0 flex-1">
-              <a
-                href="https://www.tradingview.com/"
-                target="_blank"
-                class="mb-1 text-lg font-semibold text-white">TradingView</a
-              >
+              <a href="https://www.tradingview.com/" target="_blank" class="vault-card-title mb-1 text-lg font-semibold">TradingView</a>
             </div>
           </div>
-          <p class="text-gray-100">Advanced charting and analysis platform</p>
+          <p class="opacity-90">Advanced charting and analysis platform</p>
         </div>
       </div>
     </section>

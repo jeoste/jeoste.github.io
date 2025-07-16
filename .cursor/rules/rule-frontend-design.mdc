@@ -1,0 +1,80 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Frontend Design & Development Best Practices for Neungbo
+
+This document outlines the frontend, UI, and graphic design best practices for the Neungbo project. The goal is to build a consistent, accessible, and modern user interface.
+
+## 1. Design System
+
+- **Establish a Design System**: To ensure consistency and accelerate development, we will use a design system.
+- **Design Tokens**: Predefine values for spacing, font sizes, colors, and reusable components (e.g., buttons, links) as design tokens.
+- **Global Variables**: Implement these tokens as global CSS variables for easy, site-wide adjustments.
+
+## 2. Layout & Spacing
+
+- **Generous Spacing**: When in doubt, add more space.
+- **Spacing Scale**: Employ a consistent spacing scale based on a base value (e.g., multiples of 4px).
+- **Relative Units**: Use `rem` for spacing, padding, and margins to respect user's font size preferences.
+- **Line Height**: Set body text `line-height` to approximately `1.5` for optimal readability. Increase it for smaller font sizes.
+- **Vertical Rhythm**: Ensure at least `1em` of vertical space between paragraphs and `0.5em` between list items.
+- **Aspect Ratio**: Use the `aspect-ratio` CSS property to maintain an element's proportions.
+
+## 3. Typography
+
+- **Relative Sizing**: Use relative units (`rem`, `em`) for font sizes to ensure accessibility and scalability. The minimum font size for body text should be `16px`.
+- **Typographic Scale**: Adhere to a typographic scale to create a clear visual hierarchy (e.g., for H1, H2, body text).
+- **Font Consistency**: Limit the number of fonts to a maximum of two.
+- **Text Alignment**: Prefer left-alignment for long blocks of text. Use centered alignment only for short, attention-grabbing text. Avoid justified text.
+- **All-Caps**: Avoid using all-caps for long paragraphs.
+- **Underline Offset**: Use `text-underline-offset` to create a clean gap between the text and its underline for better readability.
+
+## 4. Color & Theming
+
+- **Color Palette**: Keep the palette simple: a primary/brand color, neutrals, and semantic colors (for success, error, warning states).
+- **HSL Color Format**: Prefer HSL (Hue, Saturation, Lightness) over Hex/RGB for more intuitive color manipulation. It's especially useful for adjusting lightness for states like `:hover`.
+- **Palette Generation**: Create harmonious palettes by shifting the hue (H) of the primary color by +/- 60 degrees for accent colors.
+- **Accessibility**: Ensure sufficient contrast between text and its background to meet WCAG AA standards.
+- **Dark/Light Mode**:
+    - **Implementation**: Use CSS variables and a `data-theme` attribute on `<html>` or `<body>`. Support `prefers-color-scheme` for automatic detection.
+    - **Light Mode**: Darker elements appear further. Use high lightness values (90-100%) for backgrounds.
+    - **Dark Mode**: Brighter elements appear closer. Use low lightness values (0-10%) for backgrounds.
+
+## 5. Visual Hierarchy & Effects
+
+- **Emphasis**: Use size, font weight, and color to emphasize important elements and de-emphasize secondary ones.
+- **Depth & Shadow**: Add depth with subtle shadows. For realistic shadows, combine a short, dark shadow with a longer, lighter one.
+- **Cards**: Use cards with borders or shadows to group related information. Borders should be subtle; consider a slightly lighter top border to simulate a light source.
+- **Auras & Glows**: Use large, soft, low-opacity radial gradients (auras) in the background to add depth and visual interest without distracting from content.
+- **3D Effects**: To create a 3D rotation effect, apply a `transform: rotateY()` to an element and set the `perspective` property on its parent container to control the depth.
+
+## 6. Interactivity & User Feedback
+
+- **Micro-interactions**: Provide immediate visual feedback for user actions (hover, click) with subtle transitions and animations (e.g., `hover:scale-105`, `hover:-translate-y-1`).
+- **Animate CTAs**: Animate Calls to Action on hover to make them more prominent.
+- **Touchscreen Support**: To prevent sticky hover effects on touch devices, wrap `:hover` styles in a media query: `@media (hover: hover) { ... }`.
+
+## 7. Assets (Images & Icons)
+
+- **Image Optimization**: Convert images to the **WebP** format to significantly reduce file size with minimal quality loss.
+- **Responsive Images**: Use the `<picture>` element with `<source>` and media queries to serve appropriately sized images for different screen resolutions.
+- **Vector Graphics (SVG)**: Use SVG for icons and illustrations. They are lightweight, scalable, and can be styled with CSS, including for dark/light mode themes.
+- **Favicon**: Place a `favicon.ico` file in the `public` directory for automatic browser detection.
+
+## 8. HTML Best Practices (Prefer Native Elements)
+
+Favor native HTML elements for common UI patterns to improve accessibility and performance without JavaScript.
+
+- **Modals/Popups**: Use the `<dialog>` element.
+- **Accordions**: Use `<details>` and `<summary>`.
+- **Progress Bars**: Use `<progress>` and `<meter>`.
+- **Tooltips**: Use the global `title` attribute for simple hover tooltips.
+- **Autocomplete**: Use `<datalist>` with an `<input>`.
+- **Disable Content**: Use the `inert` attribute on a container to disable all user interactions (clicks, focus) for its children.
+- **Code Blocks**: Use `<pre>` to preserve whitespace and line breaks for displaying code snippets.
+
+
+
+

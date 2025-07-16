@@ -1,0 +1,33 @@
+/* Styles pour les cartes de la section Vault */
+
+.vault-card {
+  background: hsl(230, 60%, 96%); /* Bleu pastel clair */
+  color: hsl(230, 30%, 20%);
+  box-shadow:
+    0 2px 8px 0 hsl(230, 60%, 40%, 0.10), /* ombre colorée douce */
+    0 1.5px 4px 0 hsl(230, 30%, 10%, 0.08); /* ombre foncée subtile */
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  /* Optionnel pour effet glass: */
+  /* backdrop-filter: blur(2px) saturate(1.2); */
+}
+.vault-card:hover {
+  box-shadow:
+    0 4px 24px 0 hsl(230, 60%, 40%, 0.18),
+    0 2px 8px 0 hsl(230, 30%, 10%, 0.12);
+  transform: translateY(-2px) scale(1.02);
+}
+.vault-card-title {
+  color: hsl(265, 80%, 48%); /* Violet accent */
+}
+html[data-theme="dark"] .vault-card {
+  background: hsl(155, 30%, 13%); /* Vert foncé profond, cohérent avec le dark mode global */
+  color: hsl(155, 20%, 92%);
+  box-shadow:
+    0 2px 12px 0 hsl(51, 100%, 50%, 0.13), /* ombre jaune douce */
+    0 1.5px 4px 0 hsl(155, 30%, 8%, 0.10);
+}
+html[data-theme="dark"] .vault-card-title {
+  color: hsl(51, 100%, 50%); /* Jaune accent du site */
+} 
