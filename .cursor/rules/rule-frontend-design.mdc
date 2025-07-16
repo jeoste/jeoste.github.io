@@ -3,9 +3,9 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Frontend Design & Development Best Practices for Neungbo
+# Frontend Design & Development Best Practices
 
-This document outlines the frontend, UI, and graphic design best practices for the Neungbo project. The goal is to build a consistent, accessible, and modern user interface.
+This document outlines the frontend, UI, and graphic design best practices for the project. The goal is to build a consistent, accessible, and modern user interface.
 
 ## 1. Design System
 

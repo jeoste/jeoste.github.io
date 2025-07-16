@@ -3,7 +3,7 @@ description:
 globs: 
 alwaysApply: true
 ---
-# rule-coding-best-practices-focus
+# rule-coding-best-practices
 
 - Always prefer simple solutions
 - Avoid duplication of code whenever possible, which means checking for other areas of the codebase that might already have similar code and functionality
