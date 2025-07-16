@@ -1,0 +1,132 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { Button } from "@/components/ui/button";
+import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
+import IconMail from "@/assets/icons/IconMail.svg";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+
+const pageTitle = "Contact";
+const pageDesc = "Don't hesitate to contact me for any professional opportunity, question or feedback!";
+---
+
+<Layout>
+  <Header />
+  <main id="main-content" class="mx-auto w-full max-w-2xl px-4 py-8">
+    <h1 class="text-3xl font-bold mb-2">{pageTitle}</h1>
+    <p class="mb-8 text-lg text-foreground/80">{pageDesc}</p>
+
+    <section class="mb-12">
+      <form id="contact-form" class="flex flex-col gap-6">
+        <div>
+          <label for="name" class="block mb-1 font-medium">Your name</label>
+          <input id="name" name="name" type="text" required minlength="2" maxlength="50" class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20" autocomplete="name" />
+        </div>
+        <div>
+          <label for="email" class="block mb-1 font-medium">Your email</label>
+          <input id="email" name="email" type="email" required class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20" autocomplete="email" />
+        </div>
+        <div>
+          <label for="message" class="block mb-1 font-medium">Your message</label>
+          <textarea id="message" name="message" required minlength="10" maxlength="1000" rows="5" class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"></textarea>
+        </div>
+        <div class="flex justify-center">
+          <div class="g-recaptcha" data-sitekey="6LcLeoUrAAAAAJeks1ZOCrTlhLuFIUU0ewMT8Tbc"></div>
+        </div>
+        <button type="submit" id="send-btn"
+          class="inline-flex items-center justify-center rounded-lg bg-accent/10 px-4 py-2 text-accent border border-accent/20 transition-all hover:bg-accent/20 hover:border-accent/40 w-full sm:w-auto font-semibold text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
+        >
+          <span id="send-btn-text">Send</span>
+          <svg id="loading-spinner" class="hidden animate-spin ml-2 h-4 w-4 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+          <IconArrowRight class="ml-2 h-4 w-4 flex-shrink-0" />
+        </button>
+        <p id="form-success" class="hidden text-green-600 font-semibold mt-2" aria-live="polite">Thank you, your message has been sent!</p>
+        <p id="form-error" class="hidden text-red-600 font-semibold mt-2" aria-live="assertive">An error occurred. Please try again.</p>
+      </form>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">Or contact me directly :</h2>
+      <ul class="flex flex-col gap-3">
+        <li class="flex items-center gap-2">
+          <IconLinkedin class="h-5 w-5" />
+          <a href="https://linkedin.com/in/jeoffrey-stephan/" target="_blank" class="hover:text-accent underline underline-offset-4">LinkedIn</a>
+        </li>
+        <li class="flex items-center gap-2">
+          <IconMail class="h-5 w-5" />
+          <a href="mailto:jeoffrey.stephan@gmail.com" class="hover:text-accent underline underline-offset-4">jeoffrey.stephan@gmail.com</a>
+        </li>
+        <li class="flex items-center gap-2">
+          <IconGitHub class="h-5 w-5" />
+          <a href="https://github.com/jeoste" target="_blank" class="hover:text-accent underline underline-offset-4">GitHub</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script is:inline>
+  if (typeof window !== "undefined") {
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+    const sendBtn = document.getElementById('send-btn');
+    const sendBtnText = document.getElementById('send-btn-text');
+    const spinner = document.getElementById('loading-spinner');
+    if (form && successMsg && errorMsg && sendBtn && sendBtnText && spinner) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (typeof grecaptcha === 'undefined') {
+          errorMsg.textContent = 'Captcha not loaded.';
+          errorMsg.classList.remove('hidden');
+          return;
+        }
+        const recaptchaToken = grecaptcha.getResponse();
+        if (!recaptchaToken) {
+          errorMsg.textContent = 'Merci de valider le captcha.';
+          errorMsg.classList.remove('hidden');
+          return;
+        }
+        errorMsg.classList.add('hidden');
+        sendBtn.disabled = true;
+        sendBtnText.classList.add('opacity-50');
+        spinner.classList.remove('hidden');
+        const data = {
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value,
+          recaptchaToken,
+        };
+        try {
+          const res = await fetch('/api/send-mail', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (res.ok) {
+            form.reset();
+            grecaptcha.reset();
+            successMsg.classList.remove('hidden');
+            setTimeout(() => successMsg.classList.add('hidden'), 5000);
+          } else {
+            const err = await res.json();
+            errorMsg.textContent = err.error || 'An error occurred. Please try again.';
+            errorMsg.classList.remove('hidden');
+          }
+        } catch (err) {
+          errorMsg.textContent = 'An error occurred. Please try again.';
+          errorMsg.classList.remove('hidden');
+        } finally {
+          sendBtn.disabled = false;
+          sendBtnText.classList.remove('opacity-50');
+          spinner.classList.add('hidden');
+        }
+      });
+    }
+  }
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script> 
