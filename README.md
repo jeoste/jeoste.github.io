@@ -1,5 +1,8 @@
 # Mon Portfolio & Blog
 
+[![CI](https://github.com/jeoste/jeoste.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/jeoste/jeoste.github.io/actions/workflows/ci.yml)
+[![Coverage Status](https://img.shields.io/badge/coverage-pending-lightgrey?style=flat)](#)
+
 Ce site est un portfolio personnel et un blog créé avec le thème [AstroPaper](https://github.com/satnaing/astro-paper) pour Astro, déployé sur GitHub Pages.
 
 ## Fonctionnalités
