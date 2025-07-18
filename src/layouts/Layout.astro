@@ -99,6 +99,11 @@ const structuredData = {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
 
+    <!-- reCAPTCHA (only on contact page) -->
+    {isContactPage && (
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    )}
+
     <!-- Google JSON-LD Structured data -->
     <script
       type="application/ld+json"
