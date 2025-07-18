@@ -31,6 +31,9 @@ const {
 
 const socialImageURL = new URL(ogImage, Astro.url);
 
+// Détermine si nous sommes sur la page de contact
+const isContactPage = Astro.url.pathname === "/contact";
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -131,6 +134,10 @@ const structuredData = {
     <ClientRouter />
 
     <script is:inline src="/toggle-theme.js"></script>
+
+    {isContactPage && (
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    )}
   </head>
   <body>
     <slot />

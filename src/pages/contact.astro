@@ -2,35 +2,76 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
 import { Button } from "@/components/ui/button";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconMail from "@/assets/icons/IconMail.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 
-const pageTitle = "Contact";
-const pageDesc = "Don't hesitate to contact me for any professional opportunity, question or feedback!";
+const pageTitle = "";
+const pageDesc = "> Feel free to contact me for any inquiries.";
+
 ---
 
 <Layout>
   <Header />
-  <main id="main-content" class="mx-auto w-full max-w-2xl px-4 py-8">
-    <h1 class="text-3xl font-bold mb-2">{pageTitle}</h1>
-    <p class="mb-8 text-lg text-foreground/80">{pageDesc}</p>
+  <Main pageTitle={pageTitle} pageDesc={pageDesc}>
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+    <div class="relative w-[90%] max-w-md transform transition-all duration-300">
+      <div class="rounded-xl bg-card p-8 shadow-2xl ring-1 ring-border">
+        <div class="flex flex-col items-center gap-4">
+          <div class="rounded-full bg-green-400/10 p-3 ring-1 ring-green-400/20">
+            <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-accent">Message sent!</h3>
+          <p class="text-center text-foreground/80">Thank you for your message. I'll get back to you as soon as possible.</p>
+          <div class="flex flex-col items-center gap-2">
+            <button id="close-modal" class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-green-400/25 px-6 py-2.5 text-green-400 border-2 border-green-400/30 transition-all hover:bg-green-400/35 hover:border-green-400/50 shadow-sm shadow-green-400/20 font-semibold text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400/50 focus-visible:ring-offset-2">
+              Close (<span id="countdown">5</span>)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <section class="mb-12">
+
+<h1>Contact form</h1>
+  <main id="main-content">
+    <div class="mx-auto w-full max-w-3xl px-4 py-8">
+      
+      <h1 class="text-2xl font-bold mt-8 mb-4">{pageTitle}</h1>
+
+      <section class="mb-12">
       <form id="contact-form" class="flex flex-col gap-6">
         <div>
           <label for="name" class="block mb-1 font-medium">Your name</label>
-          <input id="name" name="name" type="text" required minlength="2" maxlength="50" class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20" autocomplete="name" />
+          <input id="name" name="name" type="text" required minlength="2" maxlength="50" placeholder="Enter your name" class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20" autocomplete="name" />
         </div>
         <div>
-          <label for="email" class="block mb-1 font-medium">Your email</label>
-          <input id="email" name="email" type="email" required class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20" autocomplete="email" />
+          <div class="space-y-1">
+            <label for="email" class="block font-medium">Your email - Not mandatory but I can answer you</label>
+            <input 
+              id="email" 
+              name="email" 
+              type="email" 
+              required 
+              placeholder="Enter your email address" 
+              class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20 aria-invalid:border-red-500 aria-invalid:ring-red-500/20" 
+              autocomplete="email"
+              aria-describedby="email-error" 
+            />
+            <p id="email-error" class="hidden text-sm text-red-500 mt-1" role="alert"></p>
+          </div>
         </div>
         <div>
           <label for="message" class="block mb-1 font-medium">Your message</label>
-          <textarea id="message" name="message" required minlength="10" maxlength="1000" rows="5" class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"></textarea>
+          <textarea id="message" name="message" required minlength="10" maxlength="1000" rows="5" placeholder="Enter your message here..." class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"></textarea>
         </div>
         <div class="flex justify-center">
           <div class="g-recaptcha" data-sitekey="6LcLeoUrAAAAAJeks1ZOCrTlhLuFIUU0ewMT8Tbc"></div>
@@ -42,7 +83,6 @@ const pageDesc = "Don't hesitate to contact me for any professional opportunity,
           <svg id="loading-spinner" class="hidden animate-spin ml-2 h-4 w-4 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
           <IconArrowRight class="ml-2 h-4 w-4 flex-shrink-0" />
         </button>
-        <p id="form-success" class="hidden text-green-600 font-semibold mt-2" aria-live="polite">Thank you, your message has been sent!</p>
         <p id="form-error" class="hidden text-red-600 font-semibold mt-2" aria-live="assertive">An error occurred. Please try again.</p>
       </form>
     </section>
@@ -65,61 +105,184 @@ const pageDesc = "Don't hesitate to contact me for any professional opportunity,
       </ul>
     </section>
   </main>
+  </Main>
   <Footer />
 </Layout>
 
 <script is:inline>
   if (typeof window !== "undefined") {
     const form = document.getElementById('contact-form');
-    const successMsg = document.getElementById('form-success');
+    const modal = document.getElementById('success-modal');
+    const closeModalBtn = document.getElementById('close-modal');
     const errorMsg = document.getElementById('form-error');
     const sendBtn = document.getElementById('send-btn');
     const sendBtnText = document.getElementById('send-btn-text');
     const spinner = document.getElementById('loading-spinner');
-    if (form && successMsg && errorMsg && sendBtn && sendBtnText && spinner) {
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+
+    // Fonction de validation d'email
+    const isValidEmail = (email) => {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+
+    // Validation de l'email en temps réel
+    emailInput?.addEventListener('input', (e) => {
+      const email = e.target.value;
+      if (email === '') {
+        emailError.textContent = 'Email is required';
+        emailError.classList.remove('hidden');
+        emailInput.setAttribute('aria-invalid', 'true');
+      } else if (!isValidEmail(email)) {
+        emailError.textContent = 'Please enter a valid email address';
+        emailError.classList.remove('hidden');
+        emailInput.setAttribute('aria-invalid', 'true');
+      } else {
+        emailError.classList.add('hidden');
+        emailInput.removeAttribute('aria-invalid');
+      }
+    });
+
+    let countdownInterval;
+    const startCountdown = () => {
+      const countdownEl = document.getElementById('countdown');
+      let timeLeft = 4;
+      
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (countdownEl) countdownEl.textContent = timeLeft.toString();
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          modal?.classList.add('hidden');
+        }
+      }, 1000);
+    };
+
+    const resetCountdown = () => {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        const countdownEl = document.getElementById('countdown');
+        if (countdownEl) countdownEl.textContent = '4';
+      }
+    };
+
+    // Fermer la modal quand on clique sur le bouton close
+    closeModalBtn?.addEventListener('click', () => {
+      modal?.classList.add('hidden');
+      resetCountdown();
+    });
+
+    // Fermer la modal quand on clique en dehors
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        resetCountdown();
+      }
+    });
+
+    // Fermer la modal avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+        resetCountdown();
+      }
+    });
+
+    if (form && modal && errorMsg && sendBtn && sendBtnText && spinner && emailInput && emailError) {
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Validation de l'email avant l'envoi
+        const email = emailInput.value;
+        if (email === '') {
+          emailError.textContent = 'Email is required';
+          emailError.classList.remove('hidden');
+          emailInput.setAttribute('aria-invalid', 'true');
+          emailInput.focus();
+          return;
+        }
+        if (!isValidEmail(email)) {
+          emailError.textContent = 'Please enter a valid email address';
+          emailError.classList.remove('hidden');
+          emailInput.setAttribute('aria-invalid', 'true');
+          emailInput.focus();
+          return;
+        }
+
+        // Vérification du captcha
         if (typeof grecaptcha === 'undefined') {
-          errorMsg.textContent = 'Captcha not loaded.';
+          errorMsg.textContent = 'Captcha is not loaded. Please refresh the page.';
           errorMsg.classList.remove('hidden');
           return;
         }
+
         const recaptchaToken = grecaptcha.getResponse();
         if (!recaptchaToken) {
-          errorMsg.textContent = 'Merci de valider le captcha.';
+          errorMsg.textContent = 'Please validate the captcha.';
           errorMsg.classList.remove('hidden');
           return;
         }
+
+        // Préparation de l'envoi
         errorMsg.classList.add('hidden');
         sendBtn.disabled = true;
         sendBtnText.classList.add('opacity-50');
         spinner.classList.remove('hidden');
+
+        // Données du formulaire
         const data = {
           name: form.name.value,
           email: form.email.value,
           message: form.message.value,
-          recaptchaToken,
+          recaptchaToken: recaptchaToken
         };
+
         try {
-          const res = await fetch('/api/send-mail', {
+          // Envoi de la requête
+          const response = await fetch('/api/send-mail', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
           });
-          if (res.ok) {
+
+          const result = await response.json();
+
+          if (response.ok) {
+            // Succès
+            modal.classList.remove('hidden');
+            errorMsg.classList.add('hidden');
             form.reset();
             grecaptcha.reset();
-            successMsg.classList.remove('hidden');
-            setTimeout(() => successMsg.classList.add('hidden'), 5000);
+            
+            // Démarrer le compteur
+            resetCountdown();
+            startCountdown();
+            
+            // Animation d'entrée de la modal
+            const modalContent = modal.querySelector('.max-w-md');
+            modalContent.style.opacity = '0';
+            modalContent.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              modalContent.style.transition = 'all 0.2s ease-out';
+              modalContent.style.opacity = '1';
+              modalContent.style.transform = 'scale(1)';
+            }, 10);
           } else {
-            const err = await res.json();
-            errorMsg.textContent = err.error || 'An error occurred. Please try again.';
-            errorMsg.classList.remove('hidden');
+            // Erreur avec message du serveur
+            throw new Error(result.error || 'Échec de l\'envoi du message');
           }
-        } catch (err) {
-          errorMsg.textContent = 'An error occurred. Please try again.';
+        } catch (error) {
+          // Erreur technique
+          console.error('Error:', error);
+          errorMsg.textContent = error.message || 'Une erreur est survenue lors de l\'envoi de votre message.';
           errorMsg.classList.remove('hidden');
+          successMsg.classList.add('hidden');
         } finally {
+          // Réinitialisation de l'interface
           sendBtn.disabled = false;
           sendBtnText.classList.remove('opacity-50');
           spinner.classList.add('hidden');
@@ -128,5 +291,3 @@ const pageDesc = "Don't hesitate to contact me for any professional opportunity,
     }
   }
 </script>
-
-<script src="https://www.google.com/recaptcha/api.js" async defer></script> 

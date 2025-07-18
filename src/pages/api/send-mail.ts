@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { ContactEmailTemplate, getContactEmailText } from '../../components/email-template';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Vérification du captcha côté serveur
-    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+    const recaptchaSecret = import.meta.env.RECAPTCHA_SECRET_KEY;
     if (!recaptchaSecret) {
       return new Response(JSON.stringify({ error: 'Captcha secret not configured' }), { status: 500 });
     }
@@ -30,14 +30,14 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Vérification de la clé API Resend
-    if (!process.env.RESEND_API_KEY) {
+    if (!import.meta.env.RESEND_API_KEY) {
       return new Response(JSON.stringify({ error: 'Resend API key not configured' }), { status: 500 });
     }
 
     // Envoi de l'email avec Resend
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>', // Utilise le domaine par défaut de Resend pour les tests
-      to: [process.env.CONTACT_EMAIL || 'jeoffrey.stephan@gmail.com'], // Email de destination
+      to: [import.meta.env.CONTACT_EMAIL || 'jeoffrey.stephan@gmail.com'], // Email de destination
       subject: `Nouveau message de contact de ${name}`,
       react: ContactEmailTemplate({ name, email, message }),
       text: getContactEmailText({ name, email, message }), // Version texte pour compatibilité
