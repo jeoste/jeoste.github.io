@@ -18,7 +18,7 @@ html[data-theme="light"] {
 
 html[data-theme="dark"] {
   /* Palette verte modernisée en HSL + accent jaune en HSL */
-  --background: hsl(155, 30%, 13%);              /* vert très foncé, fond principal */
+  --background: #1b002f ;              /* vert très foncé, fond principal */
   --background-secondary: hsl(155, 24%, 18%);    /* surface surélevée, cartes */
   --foreground: hsl(155, 20%, 92%);              /* texte principal, légèrement désaturé */
   --foreground-muted: hsl(155, 12%, 65%);        /* texte secondaire */
@@ -84,4 +84,5 @@ html[data-theme="dark"] {
 
 .active-nav {
   @apply underline decoration-wavy decoration-1 underline-offset-4;
+  color: var(--accent) !important;
 }
