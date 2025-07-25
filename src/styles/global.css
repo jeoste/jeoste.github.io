@@ -5,30 +5,29 @@
 
 :root,
 html[data-theme="light"] {
-  --background: hsl(0, 0%, 99%);         /* #fdfdfd */
+  --background: hsl(190, 60%, 96%);         /* bleu pastel très clair, harmonisé avec l'accent */
   --foreground: hsl(222, 14%, 15%);      /* #1E2129 */
-  --accent: hsl(190, 100%, 43%);         /* #00BDD6 */
-  /*--accent: hsl(51, 100%, 50%);*/      /* #FFD700 */
-  /*--accent: hsl(36, 100%, 57%);*/      /* #FFA724 */
+  --accent: hsl(190, 100%, 38%);         /* #00BDD6 */
   --muted: hsl(0, 0%, 90%);              /* #e6e6e6 */
-  --border: hsl(146, 49%, 20%);          /* #123524 */
+  --border: hsl(190, 100%, 38%);         /* harmonisé avec l'accent */
   --aura: radial-gradient(ellipse at 60% 40%, hsl(190, 100%, 60%, 0.10) 0%, transparent 70%);
   --header-shadow-color: hsl(190, 100%, 43%, 0.18);
+  --accent-button: hsla(192, 97%, 73%, 0.244);  /* juste pour le bouton header en mode clair */
 }
 
 html[data-theme="dark"] {
-  /* Palette verte modernisée en HSL + accent jaune en HSL */
-  --background: #1b002f ;              /* vert très foncé, fond principal */
-  --background-secondary: hsl(155, 24%, 18%);    /* surface surélevée, cartes */
-  --foreground: hsl(155, 20%, 92%);              /* texte principal, légèrement désaturé */
-  --foreground-muted: hsl(155, 12%, 65%);        /* texte secondaire */
-  --accent: hsl(51, 100%, 50%);                  /* accent jaune doré */
-  --accent-hover: hsl(51, 100%, 72%);            /* jaune plus clair au hover */
-  --muted: hsl(155, 16%, 25%);                   /* éléments désactivés, fonds de code */
-  --border: hsl(51, 100%, 50%);
-  --shadow: 0 4px 32px 0 hsl(155, 30%, 8%, 0.35);
-  --aura: radial-gradient(ellipse at 60% 40%, hsl(51, 100%, 50%, 0.13) 0%, transparent 70%);
-  --header-shadow-color: hsl(51, 100%, 50%, 0.18);
+  --background: hsl(0, 0%, 10%);              /* fond principal très foncé */
+  --background-secondary: hsl(0, 0%, 15%);    /* surface surélevée, cartes, gris foncé */
+  --foreground: hsl(0, 0%, 92%);              /* texte principal, blanc cassé */
+  --foreground-muted: hsl(0, 0%, 65%);        /* texte secondaire, gris clair */
+  --accent: hsl(36, 94%, 52%);                /* accent jaune doré */
+  --accent-hover: hsl(36, 94%, 52%);        /* jaune plus clair au hover */
+  --accent-button: hsla(36, 97%, 73%, 0.244);        /* just for button in header */
+  --muted: hsl(0, 0%, 25%);                   /* éléments désactivés, gris foncé */
+  --border: hsl(36, 94%, 52%); 
+  --shadow: 0 4px 32px 0 hsl(0, 0%, 0%, 0.35); /* ombre noire */
+  --aura: radial-gradient(ellipse at 60% 40%, hsl(36, 94%, 52%, 0.13) 0%, transparent 70%);
+  --header-shadow-color: hsl(36, 94%, 52%, 0.18);
 }
 
 @theme {
@@ -82,7 +81,29 @@ html[data-theme="dark"] {
   }
 }
 
-.active-nav {
-  @apply underline decoration-wavy decoration-1 underline-offset-4;
+.active-nav,
+#menu-items a:hover {
+  background: var(--accent-button);
   color: var(--accent) !important;
+  box-shadow: 0 2px 8px 0 var(--header-shadow-color), 0 0 12px 2px var(--accent);
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  @apply underline decoration-wavy decoration-1 underline-offset-4;
+}
+
+
+#nav-container > a {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  color: var(--accent) !important; /* orange (sombre) ou bleu (clair) */
+  transition: color 0.2s;
+}
+
+html[data-theme="dark"] #nav-container > a:hover {
+  color: #fff !important;
+}
+
+html[data-theme="light"] #nav-container > a:hover {
+  color: #1E2129 !important;
 }

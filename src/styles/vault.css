@@ -1,11 +1,11 @@
 /* Styles pour les cartes de la section Vault */
 
 .vault-card {
-  background: hsl(230, 60%, 96%); /* Bleu pastel clair */
-  color: hsl(230, 30%, 20%);
+  background: hsl(190, 60%, 96%); /* Bleu pastel clair, cohérent avec l'accent du mode clair */
+  color: hsl(222, 14%, 15%);
   box-shadow:
-    0 2px 8px 0 hsl(230, 60%, 40%, 0.10), /* ombre colorée douce */
-    0 1.5px 4px 0 hsl(230, 30%, 10%, 0.08); /* ombre foncée subtile */
+    0 2px 8px 0 hsl(190, 100%, 38%, 0.10), /* ombre bleue douce */
+    0 1.5px 4px 0 hsl(222, 14%, 15%, 0.08); /* ombre foncée subtile */
   border-radius: 1.25rem;
   padding: 1.5rem;
   transition: box-shadow 0.2s, transform 0.2s;
@@ -22,12 +22,18 @@
   color: hsl(200, 100%, 45%); /* Bleu ciel accent */
 }
 html[data-theme="dark"] .vault-card {
-  background: hsl(155, 30%, 13%); /* Vert foncé profond, cohérent avec le dark mode global */
-  color: hsl(155, 20%, 92%);
+  background: hsl(0, 0%, 15%); /* Gris foncé professionnel, cohérent avec le dark mode global */
+  color: hsl(0, 0%, 92%);
   box-shadow:
-    0 2px 12px 0 hsl(51, 100%, 50%, 0.13), /* ombre jaune douce */
-    0 1.5px 4px 0 hsl(155, 30%, 8%, 0.10);
+    0 2px 12px 0 hsl(36, 94%, 52%, 0.13), /* ombre jaune douce */
+    0 1.5px 4px 0 hsl(0, 0%, 0%, 0.10);
 }
 html[data-theme="dark"] .vault-card-title {
-  color: hsl(51, 100%, 50%); /* Jaune accent du site */
+  color: hsl(36, 94%, 52%);  /* Jaune accent du site */
+}
+html[data-theme="dark"] .vault-card:hover {
+  box-shadow:
+    0 4px 24px 0 hsl(36, 94%, 52%, 0.18),
+    0 2px 8px 0 hsl(0, 0%, 0%, 0.12);
+  transform: translateY(-2px) scale(1.02);
 } 
