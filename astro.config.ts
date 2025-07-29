@@ -7,6 +7,7 @@ import { SITE } from "./src/config";
 import path from "path";
 import { fileURLToPath } from "url";
 import react from "@astrojs/react";
+import vercel from "@astrojs/vercel/serverless";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -19,6 +20,9 @@ export default defineConfig({
   // Configurez le déploiement GitHub Pages 
   //base: '/', // Retirer cette ligne si votre site est à la racine du domaine
   integrations: [sitemap(), react()],
+  adapter: vercel({
+    includeFiles: ['./src/pages/api/**/*']
+  }),
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
