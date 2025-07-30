@@ -29,6 +29,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const params = Astro.params;
 const { tag } = params;
 const { page, tagName } = Astro.props;
+
+// Ensure page object exists
+if (!page) {
+  return Astro.redirect('/404');
+}
 ---
 
 <Layout title={`Tag: ${tagName} | ${SITE.title}`}>
@@ -40,11 +45,11 @@ const { page, tagName } = Astro.props;
   >
     <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
     <ul>
-      {page.data.map(data => <Card {...data} />)}
+      {page.data?.map(data => <Card {...data} />) || []}
     </ul>
   </Main>
 
   <Pagination {page} />
 
-  <Footer noMarginTop={page.lastPage > 1} />
+  <Footer noMarginTop={(page.lastPage || 1) > 1} />
 </Layout>

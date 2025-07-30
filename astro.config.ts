@@ -7,7 +7,7 @@ import { SITE } from "./src/config";
 import path from "path";
 import { fileURLToPath } from "url";
 import react from "@astrojs/react";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
