@@ -8,12 +8,13 @@
 html[data-theme="light"] {
   --background: hsl(190, 60%, 96%);         /* bleu pastel très clair, harmonisé avec l'accent */
   --foreground: hsl(222, 14%, 15%);      /* #1E2129 */
-  --accent: hsl(190, 100%, 38%);         /* #00BDD6 */
+  --accent: hsl(210, 100%, 42%);         /* #006FD6 */
+  --accent-hover: hsl(210, 100%, 55%);        /* bleu plus clair au hover */
   --muted: hsl(0, 0%, 90%);              /* #e6e6e6 */
-  --border: hsl(190, 100%, 38%);         /* harmonisé avec l'accent */
-  --aura: radial-gradient(ellipse at 60% 40%, hsl(190, 100%, 60%, 0.10) 0%, transparent 70%);
-  --header-shadow-color: hsl(190, 100%, 43%, 0.18);
-  --accent-button: hsla(192, 97%, 73%, 0.244);  /* juste pour le bouton header en mode clair */
+  --border: hsl(210, 100%, 42%);         /* harmonisé avec l'accent */
+  --aura: radial-gradient(ellipse 80% 20% at 50% 0%, rgba(0, 111, 214, 0.751), transparent 70%);
+  --header-shadow-color: hsl(210, 100%, 47%, 0.18);
+  --accent-button: hsla(210, 100%, 85%, 0.6);  /* juste pour le bouton header en mode clair */
 }
 
 html[data-theme="dark"] {
@@ -27,7 +28,7 @@ html[data-theme="dark"] {
   --muted: hsl(0, 0%, 25%);                   /* éléments désactivés, gris foncé */
   --border: hsl(36, 94%, 52%); 
   --shadow: 0 4px 32px 0 hsl(0, 0%, 0%, 0.35); /* ombre noire */
-  --aura: radial-gradient(ellipse at 60% 40%, hsl(36, 94%, 52%, 0.13) 0%, transparent 70%);
+  --aura: radial-gradient(ellipse 80% 20% at 50% 0%, rgba(253, 177, 48, 0.37), transparent 70%);
   --header-shadow-color: hsl(36, 94%, 52%, 0.18);
 }
 
@@ -65,7 +66,7 @@ html[data-theme="dark"] {
   a:hover,
   button:hover {
     color: var(--accent-hover);
-    box-shadow: 0 2px 8px 0 hsl(51, 100%, 50%, 0.20);
+    box-shadow: 0 2px 8px 0 var(--accent-hover, 0.20);
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -85,11 +86,15 @@ html[data-theme="dark"] {
 .active-nav,
 #menu-items a:hover {
   background: var(--accent-button);
-  color: var(--accent) !important;
+  color: hsl(210, 100%, 25%) !important;
   box-shadow: 0 2px 8px 0 var(--header-shadow-color), 0 0 12px 2px var(--accent);
   border-radius: 0.5rem;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  @apply underline decoration-wavy decoration-1 underline-offset-4;
+}
+
+html[data-theme="dark"] .active-nav,
+html[data-theme="dark"] #menu-items a:hover {
+  color: var(--accent) !important;
 }
 
 #nav-container > a {
