@@ -17,28 +17,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
-  <!-- Success Modal -->
-  <div id="success-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-[4px]"></div>
-    <div class="relative w-[90%] max-w-md transform transition-all duration-300">
-      <div class="rounded-xl bg-card p-8 shadow-2xl ring-1 ring-border">
-        <div class="flex flex-col items-center gap-4">
-          <div class="rounded-full bg-green-400/10 p-3 ring-1 ring-green-400/20">
-            <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-accent">Message sent!</h3>
-          <p class="text-center text-foreground/80">Thank you for your message. I'll get back to you as soon as possible.</p>
-          <div class="flex flex-col items-center gap-2">
-            <button id="close-modal" class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-green-400/25 px-6 py-2.5 text-green-400 border-2 border-green-400/30 transition-all hover:bg-green-400/35 hover:border-green-400/50 shadow-sm shadow-green-400/20 font-semibold text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400/50 focus-visible:ring-offset-2">
-              Close (<span id="countdown">5</span>)
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
 
 <h1>Contact form</h1>
@@ -55,7 +34,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
         </div>
         <div>
           <div class="space-y-1">
-            <label for="email" class="block font-medium">Your email - Not mandatory but I can answer you</label>
+            <label for="email" class="block font-medium">Your email - (so I can answer you)</label>
             <input 
               id="email" 
               name="email" 
@@ -112,8 +91,6 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
 <script is:inline>
   if (typeof window !== "undefined") {
     const form = document.getElementById('contact-form');
-    const modal = document.getElementById('success-modal');
-    const closeModalBtn = document.getElementById('close-modal');
     const errorMsg = document.getElementById('form-error');
     const sendBtn = document.getElementById('send-btn');
     const sendBtnText = document.getElementById('send-btn-text');
@@ -144,53 +121,17 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
       }
     });
 
-    let countdownInterval;
-    const startCountdown = () => {
-      const countdownEl = document.getElementById('countdown');
-      let timeLeft = 4;
-      
-      countdownInterval = setInterval(() => {
-        timeLeft--;
-        if (countdownEl) countdownEl.textContent = timeLeft.toString();
-        
-        if (timeLeft <= 0) {
-          clearInterval(countdownInterval);
-          modal?.classList.add('hidden');
-        }
-      }, 1000);
-    };
-
-    const resetCountdown = () => {
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-        const countdownEl = document.getElementById('countdown');
-        if (countdownEl) countdownEl.textContent = '4';
+    // Fonction pour afficher les notifications Sonner
+    const showNotification = (type, message) => {
+      if (typeof window !== "undefined" && window.toast) {
+        window.toast[type](message);
+      } else {
+        // Fallback si Sonner n'est pas disponible
+        console.log(`${type}: ${message}`);
       }
     };
 
-    // Fermer la modal quand on clique sur le bouton close
-    closeModalBtn?.addEventListener('click', () => {
-      modal?.classList.add('hidden');
-      resetCountdown();
-    });
-
-    // Fermer la modal quand on clique en dehors
-    modal?.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-        resetCountdown();
-      }
-    });
-
-    // Fermer la modal avec la touche Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-        modal.classList.add('hidden');
-        resetCountdown();
-      }
-    });
-
-    if (form && modal && errorMsg && sendBtn && sendBtnText && spinner && emailInput && emailError) {
+    if (form && errorMsg && sendBtn && sendBtnText && spinner && emailInput && emailError) {
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -200,6 +141,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
           emailError.textContent = 'Email is required';
           emailError.classList.remove('hidden');
           emailInput.setAttribute('aria-invalid', 'true');
+          showNotification('error', 'Veuillez saisir votre adresse email.');
           emailInput.focus();
           return;
         }
@@ -207,6 +149,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
           emailError.textContent = 'Please enter a valid email address';
           emailError.classList.remove('hidden');
           emailInput.setAttribute('aria-invalid', 'true');
+          showNotification('error', 'Veuillez saisir une adresse email valide.');
           emailInput.focus();
           return;
         }
@@ -215,6 +158,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
         if (typeof grecaptcha === 'undefined') {
           errorMsg.textContent = 'Captcha is not loaded. Please refresh the page.';
           errorMsg.classList.remove('hidden');
+          showNotification('error', 'Le captcha n\'est pas chargé. Veuillez rafraîchir la page.');
           return;
         }
 
@@ -222,6 +166,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
         if (!recaptchaToken) {
           errorMsg.textContent = 'Please validate the captcha.';
           errorMsg.classList.remove('hidden');
+          showNotification('error', 'Veuillez valider le captcha.');
           return;
         }
 
@@ -253,24 +198,10 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
 
           if (response.ok) {
             // Succès
-            modal.classList.remove('hidden');
+            showNotification('success', 'Message has been sent successfully ! I will answer you as soon as possible.');
             errorMsg.classList.add('hidden');
             form.reset();
             grecaptcha.reset();
-            
-            // Démarrer le compteur
-            resetCountdown();
-            startCountdown();
-            
-            // Animation d'entrée de la modal
-            const modalContent = modal.querySelector('.max-w-md');
-            modalContent.style.opacity = '0';
-            modalContent.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-              modalContent.style.transition = 'all 0.2s ease-out';
-              modalContent.style.opacity = '1';
-              modalContent.style.transform = 'scale(1)';
-            }, 10);
           } else {
             // Erreur avec message du serveur
             throw new Error(result.error || 'Échec de l\'envoi du message');
@@ -278,9 +209,10 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
         } catch (error) {
           // Erreur technique
           console.error('Error:', error);
-          errorMsg.textContent = error.message || 'Une erreur est survenue lors de l\'envoi de votre message.';
+          const errorMessage = error.message || 'Une erreur est survenue lors de l\'envoi de votre message.';
+          showNotification('error', errorMessage);
+          errorMsg.textContent = errorMessage;
           errorMsg.classList.remove('hidden');
-          successMsg.classList.add('hidden');
         } finally {
           // Réinitialisation de l'interface
           sendBtn.disabled = false;

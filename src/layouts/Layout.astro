@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
+import ToasterWrapper from "@/components/ToasterWrapper";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -31,7 +32,7 @@ const {
 
 const socialImageURL = new URL(ogImage, Astro.url);
 
-// Détermine si nous sommes sur la page de contact
+// determine if we are on the contact page
 const isContactPage = Astro.url.pathname === "/contact";
 
 const structuredData = {
@@ -146,6 +147,7 @@ const structuredData = {
   </head>
   <body>
     <slot />
+    <ToasterWrapper client:load />
   </body>
 </html>
 
