@@ -22,38 +22,49 @@ In the digital age, data has become the lifeblood of modern organizations. Every
 
 This is where **data observability** comes into play—a comprehensive approach to monitoring, tracking, and troubleshooting data across your entire data ecosystem.
 
-## What is Data Observability?
+# What is Data Observability?
 
 Data observability is the ability to understand the health and state of data in your systems through continuous monitoring and alerting. It's about having complete visibility into your data pipeline—from ingestion to consumption—ensuring that data is accurate, complete, and timely.
 
 Think of it as having a **"data health monitoring system"** that continuously checks the pulse of your data infrastructure, much like a doctor monitors vital signs.
 
-### The Three Pillars of Data Observability
+## The Five Pillars of Data Observability
 
-Data observability rests on three fundamental pillars that work together to provide comprehensive visibility:
+Data observability rests on five fundamental pillars that work together to provide comprehensive visibility:
 
-#### 1. Data Quality Monitoring
+### Freshness
 
-- **Freshness**: Is your data up-to-date?
-- **Volume**: Are you receiving the expected amount of data?
-- **Distribution**: Are the values within expected ranges?
-- **Schema**: Has the structure of your data changed unexpectedly?
+- **Timeliness**: Is your data up-to-date?
+- **Latency**: How long does it take for data to be available?
+- **SLA Monitoring**: Are you meeting your data delivery commitments?
 
-#### 2. Data Lineage Tracking
+### Quality
+
+- **Accuracy**: Is your data correct and trustworthy?
+- **Completeness**: Are all required fields populated?
+- **Consistency**: Are values consistent across different sources?
+
+### Volume
+
+- **Data Volume**: Are you receiving the expected amount of data?
+- **Growth Patterns**: Is data volume growing as expected?
+- **Anomaly Detection**: Are there unexpected spikes or drops?
+
+### Schema
+
+- **Structure Changes**: Has the structure of your data changed unexpectedly?
+- **Field Validation**: Are all fields present and properly typed?
+- **Version Control**: Are schema changes tracked and documented?
+
+### Lineage
 
 - **Source to Destination**: Where did this data come from?
 - **Transformation History**: What changes were made along the way?
 - **Impact Analysis**: What downstream systems depend on this data?
 
-#### 3. Data Reliability Metrics
+# Why Data Observability Matters
 
-- **Availability**: Is your data accessible when needed?
-- **Performance**: How fast is your data processing?
-- **Accuracy**: Is your data correct and trustworthy?
-
-## Why Data Observability Matters
-
-### The Hidden Cost of Bad Data
+## The Hidden Cost of Bad Data
 
 Poor data quality costs organizations an estimated **$12.9 million annually** on average. This includes:
 
@@ -62,7 +73,7 @@ Poor data quality costs organizations an estimated **$12.9 million annually** on
 - **Compliance risks** and potential regulatory fines
 - **Customer trust erosion** from data-driven mistakes
 
-### Real-World Scenarios
+## Real-World Scenarios
 
 Consider these common scenarios where data observability becomes critical:
 
@@ -84,13 +95,13 @@ Consider these common scenarios where data observability becomes critical:
 - Clinical decisions are made with outdated information
 - Result: Patient safety risks, potential legal liability
 
-## The Data Observability Stack
+# The Data Observability Stack
 
-### Core Components
+## Core Components
 
 A comprehensive data observability solution typically includes:
 
-#### 1. Data Quality Testing
+### Data Quality Testing
 
 ```sql
 -- Example: Automated data quality check
@@ -102,150 +113,130 @@ FROM users
 WHERE created_at >= CURRENT_DATE - INTERVAL '7 days';
 ```
 
-#### 2. Data Lineage Visualization
+### Data Lineage Visualization
 
 - **Source tracking**: Identify where each data element originates
 - **Transformation mapping**: Document all data transformations
 - **Impact analysis**: Understand downstream dependencies
 
-#### 3. Real-time Monitoring
+### Real-time Monitoring
 
 - **Anomaly detection**: Identify unusual patterns in data
 - **Threshold alerts**: Get notified when metrics exceed limits
 - **Performance tracking**: Monitor pipeline execution times
 
-#### 4. Incident Management
+### Incident Management
 
 - **Root cause analysis**: Quickly identify data issues
 - **Automated remediation**: Fix common problems automatically
 - **Escalation procedures**: Route issues to appropriate teams
 
-## Best Practices for Data Observability
+# Best Practices for Data Observability
 
-### 1. Start with the End in Mind
+## Start with the End in Mind
 
 Focus on the data that drives business decisions. Not all data needs the same level of observability.
 
-### 2. Implement Progressive Monitoring
+## Implement Progressive Monitoring
 
 - **Level 1**: Basic health checks (data exists, pipeline runs)
 - **Level 2**: Quality validation (data format, completeness)
 - **Level 3**: Business logic validation (domain-specific rules)
 - **Level 4**: Predictive monitoring (anomaly detection)
 
-### 3. Create a Data Quality Culture
+## Create a Data Quality Culture
 
 - **Data ownership**: Assign responsibility for data quality
 - **Training**: Educate teams on data observability principles
 - **Documentation**: Maintain clear data definitions and business rules
 - **Collaboration**: Foster communication between data producers and consumers
 
-### 4. Automate Everything Possible
+## Automate Everything Possible
 
 - **Automated testing**: Run data quality checks automatically
 - **Automated alerts**: Notify stakeholders of issues immediately
 - **Automated remediation**: Fix common problems without human intervention
 - **Automated reporting**: Generate regular data health reports
 
-### 5. Measure and Iterate
+## Measure and Iterate
 
 - **Track observability metrics**: Monitor the effectiveness of your observability system
 - **Gather feedback**: Collect input from data users
 - **Continuous improvement**: Regularly update and enhance your observability practices
 
-## The ROI of Data Observability
+# The ROI of Data Observability
 
-### Tangible Benefits
+## Tangible Benefits
 
-1. Reduced Data Incidents
+Reduced Data Incidents
 
 - 60% reduction in data quality issues
 - 80% faster incident resolution
 - 90% reduction in data-related outages
 
-2. Improved Decision Making
+Improved Decision Making
 
 - 25% increase in data-driven decision confidence
 - 40% reduction in time spent on data validation
 - 30% improvement in business metrics accuracy
 
-3. Operational Efficiency
+Operational Efficiency
 
 - 50% reduction in manual data quality checks
 - 70% faster new data pipeline deployment
 - 45% reduction in data-related support tickets
 
-### Intangible Benefits
+## Intangible Benefits
 
 - **Increased trust** in data across the organization
 - **Better collaboration** between technical and business teams
 - **Enhanced compliance** with data governance requirements
 - **Improved customer experience** through reliable data
 
-## Common Challenges and Solutions
+# Common Challenges and Solutions
 
-### Challenge 1: Tool Sprawl
+## Challenge 1: Tool Sprawl
+
 **Problem**: Multiple monitoring tools create confusion and overhead.
 
 **Solution**: Consolidate on a unified observability platform or create a centralized dashboard that aggregates insights from multiple tools.
 
-### Challenge 2: Alert Fatigue
+## Challenge 2: Alert Fatigue
+
 **Problem**: Too many alerts lead to ignored notifications.
 
 **Solution**: Implement intelligent alerting with proper thresholds, escalation procedures, and alert correlation.
 
-### Challenge 3: Data Silos
+## Challenge 3: Data Silos
+
 **Problem**: Different teams use different data sources and tools.
 
 **Solution**: Establish data governance policies and create a unified data catalog with clear ownership and access controls.
 
-### Challenge 4: Skills Gap
+## Challenge 4: Skills Gap
+
 **Problem**: Teams lack expertise in data observability tools and practices.
 
 **Solution**: Invest in training, hire specialized talent, or partner with consultants to build internal capabilities.
 
-## The Future of Data Observability
+# Conclusion
 
-### Emerging Trends
-
-1. AI-Powered Observability
-
-- Machine learning for anomaly detection
-- Predictive analytics for data quality issues
-- Automated root cause analysis
-
-2. Real-Time Observability
-
-- Streaming data quality monitoring
-- Instant alerting and remediation
-- Live data lineage tracking
-
-3. Self-Service Observability
-
-- Business user-friendly dashboards
-- No-code data quality testing
-- Automated data documentation
-
-4. Observability as Code
-
-- Infrastructure as Code for observability
-- Version-controlled monitoring configurations
-- Automated deployment of observability tools
-
-## Conclusion
-
-Data observability is not just a technical solution—it's a strategic imperative for organizations that want to thrive in the data-driven economy. By implementing comprehensive data observability practices, you can:
+Data observability gives you a strategic advantage:
 
 - **Prevent costly data incidents** before they impact your business
 - **Build trust** in your data across the organization
 - **Accelerate data-driven decision making** with confidence
 - **Improve operational efficiency** and reduce manual overhead
 
-The journey to data observability starts with a single step. Begin by assessing your current state, identifying your most critical data assets, and implementing basic monitoring. As you build momentum and see results, expand your observability practices to cover more of your data ecosystem.
-
 <mark>Data observability is not a destination—it's a continuous journey of improvement and adaptation to your organization's evolving data needs.</mark>
 
-The organizations that embrace data observability today will be the ones that lead their industries tomorrow. Don't wait until a data incident forces you to act. Start building your data observability foundation now, and position your organization for success in the data-driven future.
+The organizations that embrace data observability today will be the ones that moves ahead of their concurrent, enhance quality of their entire stack (data and infrastructure) and bring IT talent that can finaly focus on what matters : create, and not fixing the broken stuff.
+
+Don't wait until a data incident forces you to act. 
+
+Start building your data observability foundation now, and position your organization for success in the data-driven future.
+
+If you want to see what the future of data observability is, then check my current project <a href='https://focusdata.dev' target='_blank' class='text-accent hover:underline transition-colors'>focusdata.dev</a> and the article linked [Focus Data Observability Platform](https://jeoste.github.io/articles/focus-data-observability-platform/)
 
 ---
 
