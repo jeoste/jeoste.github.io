@@ -5,6 +5,13 @@ import type { ToasterProps } from "sonner"
 // Exposer les toasts globalement pour l'utilisation dans les scripts inline
 if (typeof window !== "undefined") {
   (window as any).toast = toast;
+  
+  // S'assurer que toast est disponible même si le composant n'est pas encore monté
+  (window as any).showToast = (type: string, message: string) => {
+    if (toast && typeof toast[type as keyof typeof toast] === 'function') {
+      (toast as any)[type](message);
+    }
+  };
 }
 
 const Toaster = ({ ...props }: ToasterProps) => {

@@ -20,9 +20,7 @@ export default defineConfig({
   // Configurez le déploiement GitHub Pages 
   //base: '/', // Retirer cette ligne si votre site est à la racine du domaine
   integrations: [sitemap(), react()],
-  adapter: vercel({
-    includeFiles: ['./src/pages/api/**/*']
-  }),
+  adapter: vercel(),
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {

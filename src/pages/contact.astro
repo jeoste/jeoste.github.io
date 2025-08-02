@@ -3,7 +3,6 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Main from "@/layouts/Main.astro";
-import { Button } from "@/components/ui/button";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconMail from "@/assets/icons/IconMail.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
@@ -53,7 +52,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
           <textarea id="message" name="message" required minlength="10" maxlength="1000" rows="5" placeholder="Enter your message here..." class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"></textarea>
         </div>
         <div class="flex justify-center">
-          <div class="g-recaptcha" data-sitekey="6LcLeoUrAAAAAJeks1ZOCrTlhLuFIUU0ewMT8Tbc"></div>
+          <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}></div>
         </div>
         <button type="submit" id="send-btn"
           class="inline-flex items-center justify-center rounded-lg bg-accent/10 px-4 py-2 text-accent border border-accent/20 transition-all hover:bg-accent/20 hover:border-accent/40 w-full sm:w-auto font-semibold text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
@@ -123,12 +122,40 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
 
     // Fonction pour afficher les notifications Sonner
     const showNotification = (type, message) => {
-      if (typeof window !== "undefined" && window.toast) {
-        window.toast[type](message);
-      } else {
-        // Fallback si Sonner n'est pas disponible
-        console.log(`${type}: ${message}`);
+      // Essayer d'utiliser la fonction globale showToast
+      if (typeof window !== "undefined" && window.showToast) {
+        window.showToast(type, message);
+        return;
       }
+
+      // Attendre que Sonner soit disponible
+      const waitForSonner = () => {
+        if (typeof window !== "undefined" && window.toast) {
+          window.toast[type](message);
+          return true;
+        }
+        return false;
+      };
+
+      // Essayer immédiatement
+      if (waitForSonner()) return;
+
+      // Si pas disponible, attendre un peu et réessayer
+      setTimeout(() => {
+        if (waitForSonner()) return;
+        
+        // Si toujours pas disponible après 1 seconde, utiliser un fallback
+        setTimeout(() => {
+          if (waitForSonner()) return;
+          
+          // Fallback final : alert ou console
+          if (type === 'success') {
+            alert('✅ ' + message);
+          } else if (type === 'error') {
+            alert('❌ ' + message);
+          }
+        }, 1000);
+      }, 100);
     };
 
     if (form && errorMsg && sendBtn && sendBtnText && spinner && emailInput && emailError) {
@@ -208,7 +235,7 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
           }
         } catch (error) {
           // Erreur technique
-          console.error('Error:', error);
+          // console.error supprimé pour la production
           const errorMessage = error.message || 'Une erreur est survenue lors de l\'envoi de votre message.';
           showNotification('error', errorMessage);
           errorMsg.textContent = errorMessage;

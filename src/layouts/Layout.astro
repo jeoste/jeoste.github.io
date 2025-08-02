@@ -102,7 +102,7 @@ const structuredData = {
 
     <!-- reCAPTCHA (only on contact page) -->
     {isContactPage && (
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <script is:inline src="https://www.google.com/recaptcha/api.js" async defer></script>
     )}
 
     <!-- Google JSON-LD Structured data -->
@@ -140,10 +140,6 @@ const structuredData = {
     <ClientRouter />
 
     <script is:inline src="/toggle-theme.js"></script>
-
-    {isContactPage && (
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    )}
   </head>
   <body>
     <slot />

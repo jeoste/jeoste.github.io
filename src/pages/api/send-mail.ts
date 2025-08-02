@@ -19,14 +19,29 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Captcha secret not configured' }), { status: 500 });
     }
     
+    // Validation supplémentaire du token
+    if (!recaptchaToken || typeof recaptchaToken !== 'string' || recaptchaToken.length < 20) {
+      return new Response(JSON.stringify({ error: 'Invalid captcha token' }), { status: 400 });
+    }
+    
     const recaptchaRes = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${recaptchaToken}`,
       { method: 'POST' }
     );
+    
+    if (!recaptchaRes.ok) {
+      return new Response(JSON.stringify({ error: 'Captcha verification failed' }), { status: 500 });
+    }
+    
     const recaptchaData = await recaptchaRes.json();
     
     if (!recaptchaData.success) {
-      return new Response(JSON.stringify({ error: 'Captcha failed' }), { status: 400 });
+      return new Response(JSON.stringify({ error: 'Captcha validation failed' }), { status: 400 });
+    }
+    
+    // Vérification du score (pour reCAPTCHA v3) ou hostname (pour v2)
+    if (recaptchaData.score !== undefined && recaptchaData.score < 0.5) {
+      return new Response(JSON.stringify({ error: 'Captcha score too low' }), { status: 400 });
     }
 
     // Vérification de la clé API Resend
@@ -45,13 +60,13 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      // console.error supprimé pour la production
       return new Response(JSON.stringify({ error: 'Erreur lors de l\'envoi de l\'email' }), { status: 500 });
     }
 
     return new Response(JSON.stringify({ success: true, messageId: data?.id }), { status: 200 });
   } catch (err) {
-    console.error('API error:', err);
+    // console.error supprimé pour la production
     return new Response(JSON.stringify({ error: 'Erreur serveur' }), { status: 500 });
   }
 };
