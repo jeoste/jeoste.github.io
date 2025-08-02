@@ -62,6 +62,8 @@ Data observability rests on five fundamental pillars that work together to provi
 - **Transformation History**: What changes were made along the way?
 - **Impact Analysis**: What downstream systems depend on this data?
 
+
+
 # Why Data Observability Matters
 
 ## The Hidden Cost of Bad Data
