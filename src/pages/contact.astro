@@ -16,15 +16,13 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
 <Layout>
   <Header />
   <Main pageTitle={pageTitle} pageDesc={pageDesc}>
+    <div class="prose prose-lg prose-slate dark:prose-invert">
+      <h2>Contact form</h2>
+    </div>
 
 
 
-<h1>Contact form</h1>
-  <main id="main-content">
     <div class="mx-auto w-full max-w-3xl px-4 py-8">
-      
-      <h1 class="text-2xl font-bold mt-8 mb-4">{pageTitle}</h1>
-
       <section class="mb-12">
       <form id="contact-form" class="flex flex-col gap-6">
         <div>
@@ -52,7 +50,13 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
           <textarea id="message" name="message" required minlength="10" maxlength="1000" rows="5" placeholder="Enter your message here..." class="w-full rounded border border-border px-4 py-2 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"></textarea>
         </div>
         <div class="flex justify-center">
-          <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}></div>
+          <div 
+            class="g-recaptcha" 
+            data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY} 
+            aria-label="reCAPTCHA verification"
+            role="presentation"
+            aria-hidden="false"
+          ></div>
         </div>
         <button type="submit" id="send-btn"
           class="inline-flex items-center justify-center rounded-lg bg-accent/10 px-4 py-2 text-accent border border-accent/20 transition-all hover:bg-accent/20 hover:border-accent/40 w-full sm:w-auto font-semibold text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
@@ -82,7 +86,6 @@ const pageDesc = "> Feel free to contact me for any inquiries.";
         </li>
       </ul>
     </section>
-  </main>
   </Main>
   <Footer />
 </Layout>
