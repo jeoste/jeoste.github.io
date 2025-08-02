@@ -239,3 +239,25 @@ html[data-theme="light"] #nav-container > a:hover {
   border-radius: 0.5rem !important;
   backdrop-filter: blur(8px) !important;
 }
+
+/* Styles personnalisés pour la balise mark */
+mark {
+  background-color: var(--accent);
+  color: var(--background);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Ajustement spécifique pour le mode sombre */
+html[data-theme="dark"] mark {
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+/* Ajustement spécifique pour le mode clair */
+html[data-theme="light"] mark {
+  background-color: var(--accent);
+  color: var(--background);
+}
