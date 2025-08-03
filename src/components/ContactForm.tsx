@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Loader2, Send, CheckCircle, Shield, AlertCircle, Linkedin, Mail } from "lucide-react"
+import { Loader2, Send, CheckCircle, Shield, AlertCircle, LinkedinIcon, Mail } from "lucide-react"
 
 // Global APIs types
 declare global {
@@ -395,7 +395,7 @@ export default function ContactForm({ recaptchaSiteKey }: ContactFormProps) {
         <CardContent>
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <Linkedin className="h-5 w-5 text-foreground" />
+              <LinkedinIcon className="h-5 w-5 text-foreground" />
               <a 
                 href="https://linkedin.com/in/jeoffrey-stephan/" 
                 target="_blank" 
