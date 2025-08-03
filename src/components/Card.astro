@@ -2,15 +2,20 @@
 import { slugifyStr } from "@/utils/slugify";
 import type { CollectionEntry } from "astro:content";
 import { getPath } from "@/utils/getPath";
+import { calculateReadingTime, formatReadingTime } from "@/utils/readingTime";
 import Datetime from "./Datetime.astro";
 
 export interface Props extends CollectionEntry<"blog"> {
   variant?: "h2" | "h3";
 }
 
-const { variant = "h2", data, id, filePath } = Astro.props;
+const { variant = "h2", data, id, filePath, body } = Astro.props;
 
 const { title, description, pubDatetime, modDatetime, timezone } = data;
+
+// Calculer le temps de lecture
+const readingTimeMinutes = calculateReadingTime(body || "");
+const readingTimeText = formatReadingTime(readingTimeMinutes);
 
 const headerProps = {
   style: { viewTransitionName: slugifyStr(title) },
@@ -31,6 +36,10 @@ const headerProps = {
       )
     }
   </a>
-  <Datetime {pubDatetime} {modDatetime} {timezone} />
+  <div class="flex items-end space-x-2 opacity-80 text-skin-base/70">
+    <Datetime {pubDatetime} {modDatetime} {timezone} />
+    <span class="mx-2 text-sm italic">•</span>
+    <span class="text-sm italic">{readingTimeText}</span>
+  </div>
   <p>{description}</p>
 </li>

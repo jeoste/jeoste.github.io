@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import relativeTime from "dayjs/plugin/relativeTime";
-import IconCalendar from "@/assets/icons/IconCalendar.svg";
 import { SITE } from "@/config";
 import { getRelativeTime } from "@/utils/relativeTime";
 
@@ -47,12 +46,6 @@ const displayModDate = modDatetime && shouldShowRelative ? modRelativeDate : mod
 ---
 
 <div class:list={["flex items-end space-x-2 opacity-80", className]}>
-  <IconCalendar
-    class:list={[
-      "inline-block size-6 min-w-[1.375rem]",
-      { "scale-90": size === "sm" },
-    ]}
-  />
   <span class:list={["text-sm italic", { "sm:text-base": size === "lg" }]}>
     <span>Publication date:{" "}</span>
     <time datetime={pubDate.toISOString()} title={`${formatDate(pubDate)} | ${formatTime(pubDate)}`}>

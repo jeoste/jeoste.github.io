@@ -1,12 +1,12 @@
-import { useTheme } from "next-themes"
 import { Toaster as Sonner, toast } from "sonner"
 import type { ToasterProps } from "sonner"
+import { useEffect, useState } from "react"
 
-// Exposer les toasts globalement pour l'utilisation dans les scripts inline
+// Expose the toasts globally for use in inline scripts
 if (typeof window !== "undefined") {
   (window as any).toast = toast;
   
-  // S'assurer que toast est disponible même si le composant n'est pas encore monté
+  // Ensure that toast is available even if the component is not yet mounted
   (window as any).showToast = (type: string, message: string) => {
     if (toast && typeof toast[type as keyof typeof toast] === 'function') {
       (toast as any)[type](message);
@@ -15,9 +15,29 @@ if (typeof window !== "undefined") {
 }
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const [theme, setTheme] = useState<"light" | "dark">("light")
 
-  // define the colors according to the theme
+  // Detect the current theme based on data-theme
+  useEffect(() => {
+    const updateTheme = () => {
+      const dataTheme = document.documentElement.getAttribute("data-theme")
+      setTheme(dataTheme === "dark" ? "dark" : "light")
+    }
+
+    // Check the initial theme
+    updateTheme()
+
+    // Observe the theme changes
+    const observer = new MutationObserver(updateTheme)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"]
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Define the colors according to the theme
   const getThemeColors = () => {
     if (theme === "dark") {
       return {
@@ -32,7 +52,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         "--error-border": "hsl(0, 84%, 60%, 0.4)",
       }
     } else {
-      // Mode clair
+        // Light mode
       return {
         "--normal-bg": "hsl(190, 60%, 96%)",
         "--normal-text": "hsl(222, 14%, 15%)",
@@ -52,6 +72,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       style={getThemeColors() as React.CSSProperties}
+      position="top-right"
+      richColors
       {...props}
     />
   )

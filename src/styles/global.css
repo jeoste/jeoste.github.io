@@ -8,10 +8,18 @@
 html[data-theme="light"] {
   --background: hsl(190, 60%, 96%);         /* bleu pastel très clair, harmonisé avec l'accent */
   --foreground: hsl(222, 14%, 15%);      /* #1E2129 */
+  --card: hsl(190, 60%, 98%);             /* carte légèrement plus claire que le fond */
+  --card-foreground: hsl(222, 14%, 15%);  /* même couleur que foreground */
   --accent: hsl(210, 100%, 42%);         /* #006FD6 */
   --accent-hover: hsl(210, 100%, 55%);        /* bleu plus clair au hover */
   --muted: hsl(0, 0%, 90%);              /* #e6e6e6 */
+  --muted-foreground: hsl(222, 14%, 45%); /* texte secondaire */
   --border: hsl(210, 100%, 42%);         /* harmonisé avec l'accent */
+  --input: hsl(190, 60%, 98%);           /* fond des inputs */
+  --ring: hsl(210, 100%, 42%);           /* couleur de focus */
+  --destructive: hsl(0, 84%, 60%);       /* couleur pour les erreurs */
+  --secondary: hsl(210, 100%, 42%);      /* couleur secondaire (bleu) */
+  --secondary-foreground: hsl(190, 60%, 96%); /* couleur de texte sur fond secondaire */
   --aura: radial-gradient(ellipse 80% 20% at 50% 0%, rgba(0, 111, 214, 0.751), transparent 70%);
   --header-shadow-color: hsl(210, 100%, 47%, 0.18);
   --accent-button: hsla(210, 100%, 85%, 0.6);  /* juste pour le bouton header en mode clair */
@@ -22,11 +30,19 @@ html[data-theme="dark"] {
   --background-secondary: hsl(0, 0%, 15%);    /* surface surélevée, cartes, gris foncé */
   --foreground: hsl(0, 0%, 92%);              /* texte principal, blanc cassé */
   --foreground-muted: hsl(0, 0%, 65%);        /* texte secondaire, gris clair */
+  --card: hsl(0, 0%, 15%);                    /* cartes légèrement plus claires que le fond */
+  --card-foreground: hsl(0, 0%, 92%);         /* même couleur que foreground */
   --accent: hsl(36, 94%, 52%);                /* accent jaune doré */
   --accent-hover: hsl(36, 94%, 52%);        /* jaune plus clair au hover */
   --accent-button: hsla(36, 97%, 73%, 0.244);        /* just for button in header */
   --muted: hsl(0, 0%, 25%);                   /* éléments désactivés, gris foncé */
+  --muted-foreground: hsl(0, 0%, 65%);        /* texte secondaire */
   --border: hsl(36, 94%, 52%); 
+  --input: hsl(0, 0%, 15%);                   /* fond des inputs */
+  --ring: hsl(36, 94%, 52%);                  /* couleur de focus */
+  --destructive: hsl(0, 84%, 60%);            /* couleur pour les erreurs */
+  --secondary: hsl(36, 94%, 52%);             /* couleur secondaire (orange) */
+  --secondary-foreground: hsl(0, 0%, 10%);    /* couleur de texte sur fond secondaire */
   --shadow: 0 4px 32px 0 hsl(0, 0%, 0%, 0.35); /* ombre noire */
   --aura: radial-gradient(ellipse 80% 20% at 50% 0%, rgba(253, 177, 48, 0.37), transparent 70%);
   --header-shadow-color: hsl(36, 94%, 52%, 0.18);
@@ -35,9 +51,17 @@ html[data-theme="dark"] {
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
 }
 
 @layer base {
@@ -51,7 +75,7 @@ html[data-theme="dark"] {
     @apply overflow-y-scroll scroll-smooth;
   }
   body {
-    @apply flex min-h-svh flex-col font-sans selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col font-sans selection:bg-secondary selection:text-secondary-foreground;
     background: var(--background);
     color: var(--foreground);
     background-image: var(--aura);
@@ -76,7 +100,7 @@ html[data-theme="dark"] {
   footer {
     @apply mx-auto max-w-3xl px-4;
     background: transparent;
-    /* Suppression de l'effet de profondeur et de la bordure */
+    /* Suppression of the depth effect and the border */
     /* box-shadow: var(--shadow); */
     border-radius: 1rem;
     /* border: 1px solid var(--border); */
@@ -101,7 +125,7 @@ html[data-theme="dark"] #menu-items a:hover {
   background: transparent !important;
   box-shadow: none !important;
   border-radius: 0 !important;
-  color: var(--accent) !important; /* orange (sombre) ou bleu (clair) */
+  color: var(--accent) !important; /* orange (dark) or blue (light) */
   transition: color 0.2s;
 }
 
@@ -229,9 +253,9 @@ html[data-theme="light"] #nav-container > a:hover {
   }
 }
 
-/* Styles personnalisés pour Sonner */
+/* Custom styles for Sonner */
 .toaster {
-  /* Les couleurs sont maintenant gérées dynamiquement par le composant Sonner */
+  /* The colors are now managed dynamically by the Sonner component */
 }
 
 .toaster [data-sonner-toast] {
@@ -240,7 +264,7 @@ html[data-theme="light"] #nav-container > a:hover {
   backdrop-filter: blur(8px) !important;
 }
 
-/* Styles personnalisés pour la balise mark */
+/* Custom styles for the mark tag */
 mark {
   background-color: var(--accent);
   color: var(--background);
@@ -250,13 +274,13 @@ mark {
   font-style: italic;
 }
 
-/* Ajustement spécifique pour le mode sombre */
+/* Specific adjustment for dark mode */
 html[data-theme="dark"] mark {
   background-color: var(--accent);
   color: var(--background);
 }
 
-/* Ajustement spécifique pour le mode clair */
+/* Specific adjustment for light mode */
 html[data-theme="light"] mark {
   background-color: var(--accent);
   color: var(--background);
