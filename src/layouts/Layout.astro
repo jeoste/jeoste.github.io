@@ -102,7 +102,7 @@ const structuredData = {
 
     <!-- reCAPTCHA (only on contact page) -->
     {isContactPage && (
-      <script src={`https://www.google.com/recaptcha/api.js?render=${import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}`} async defer></script>
+      <script is:inline src={`https://www.google.com/recaptcha/api.js?render=${import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}`} async defer></script>
     )}
 
     <!-- Google JSON-LD Structured data -->
