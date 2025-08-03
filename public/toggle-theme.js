@@ -26,6 +26,13 @@ function setPreference() {
 function reflectPreference() {
   document.firstElementChild.setAttribute("data-theme", themeValue);
 
+  // Apply the dark class for shadcn/ui components
+  if (themeValue === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+
   document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
 
   // Get a reference to the body element
@@ -48,6 +55,13 @@ function reflectPreference() {
 
 // set early so no page flashes / CSS is made aware
 reflectPreference();
+
+// Also apply the dark class immediately to prevent flash
+if (themeValue === "dark") {
+  document.documentElement.classList.add("dark");
+} else {
+  document.documentElement.classList.remove("dark");
+}
 
 window.onload = () => {
   function setThemeFeature() {

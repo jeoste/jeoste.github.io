@@ -4,20 +4,23 @@ import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import { SITE } from "./src/config";
+import path from "path";
+import { fileURLToPath } from "url";
+import react from "@astrojs/react";
+import vercel from "@astrojs/vercel";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  output: 'server',  // Active le mode serveur pour les API endpoints
   server: {
     port: 8888
   },
   // Configurez le déploiement GitHub Pages 
   //base: '/', // Retirer cette ligne si votre site est à la racine du domaine
-  integrations: [
-    sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
-    }),
-  ],
+  integrations: [sitemap(), react()],
+  adapter: vercel(),
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
@@ -31,6 +34,11 @@ export default defineConfig({
     layout: "constrained",
   },
   vite: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
     plugins: [tailwindcss()],
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],

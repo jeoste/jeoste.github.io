@@ -30,17 +30,27 @@ const currentProjects = [
       description:
         "Clients are french & european companies. <br>The mission is to synchronize their business applications to the information system in order to optimize their supply chain, logistics and customer service.",
     },
-    slug: "/portfolio/data-consulting",
+    slug: "/portfolio#data-consulting",
   },
   {
-    id: "entrepreneurship",
+    id: "startup-entrepreneurship",
     collection: "portfolio",
     data: {
       title: "Startup & Entrepreneurship",
       description:
-        "Developing a Data Omniscience Platform for B2B companies. <br>Know what, where, when and why your data contains errors, your dataflows are failing, your information system has issues and how to solve them.",
+        "Developing a Data Platform that focus on Observability for B2B companies. <br>Know what, where, when and why your data contains errors, your dataflows are failing, your information system has issues and how to solve them.<br> Check by yourself : <a href='https://focusdata.dev' target='_blank' class='text-accent hover:underline transition-colors'>focusdata.dev</a>",
     },
-    slug: "/portfolio/entrepreneurship",
+    slug: "/portfolio#startup-entrepreneurship",
+  },
+  {
+    id: "trading",
+    collection: "portfolio",
+    data: {
+      title: "Trading",
+      description:
+        "When the market offers good opportunities, I trade on the crypto market. I'm using my own trading indicators built on TradingView.<br>My strategy is based on high timeframe reversal (Daily or Weekly) to short the market.",
+    },
+    slug: "/portfolio#trading",
   },
 ];
 ---
@@ -50,7 +60,7 @@ const currentProjects = [
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Welcome!
+        Bienvenue!
         <a
           target="_blank"
           href="/rss.xml"
@@ -69,13 +79,13 @@ const currentProjects = [
       <div class="mb-6 flex items-start gap-6">
         <img
           src="/assets/profile.jpg"
-          alt="Photo de profil"
+          alt="Profil"
           class="h-32 w-32 rounded-full border-4 border-accent object-cover"
         />
         <div class="flex-1">
           <div class="mb-4">
             <h2 class="mb-2 text-2xl font-semibold">Jeoffrey Stéphan</h2>
-            <p class="text-lg text-accent">Data Consultant & Entrepreneur</p>
+            <p class="text-lg text-accent">Data Consultant & Entrepreneur & Trader</p>
           </div>
           <div class="mb-4">
             <p class="text-gray-600 dark:text-gray-300">
@@ -147,17 +157,17 @@ const currentProjects = [
               <a
                 href="https://rxresu.me/jeoste/en-data-consultant"
                 target="_blank"
-                class="inline-flex items-center rounded-lg bg-transparent px-4 py-2 text-accent transition-colors hover:bg-accent/10"
+                class="inline-flex items-center justify-center rounded-lg bg-accent/10 px-4 py-2 text-accent border border-accent/20 transition-all hover:bg-accent/20 hover:border-accent/40"
               >
                 Resume
-                <IconArrowRight class="ml-2 h-4 w-4" />
+                <IconArrowRight class="ml-2 h-4 w-4 flex-shrink-0" />
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <Hr />
+      <Hr noPadding={true} />
 
       {
         recentPosts.length > 0 && (
@@ -180,7 +190,7 @@ const currentProjects = [
         </LinkButton>
       </div>
 
-      <Hr />
+      <Hr noPadding={true} />
 
       {
         currentProjects.length > 0 && (

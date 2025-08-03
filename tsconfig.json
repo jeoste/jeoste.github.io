@@ -1,7 +1,14 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "src/**/*"],
-  "exclude": ["dist", "public/pagefind"],
+  "exclude": [
+    "dist", 
+    "public/pagefind",
+    "src/components/icons/GithubIcon.astro",
+    "src/components/icons/KakaoIcon.astro", 
+    "src/components/icons/LinkedinIcon.astro",
+    "src/components/icons/MailIcon.astro"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

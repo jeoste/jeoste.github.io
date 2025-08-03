@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
+import ToasterWrapper from "@/components/ToasterWrapper";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -31,6 +32,9 @@ const {
 
 const socialImageURL = new URL(ogImage, Astro.url);
 
+// determine if we are on the contact page
+const isContactPage = Astro.url.pathname === "/contact";
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -47,11 +51,10 @@ const structuredData = {
   ],
 };
 
-const currentLang = "en";
 ---
 
 <!doctype html>
-<html lang={currentLang} class={`${scrollSmooth && "scroll-smooth"}`}>
+<html lang="en" class={`${scrollSmooth && "scroll-smooth"}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -97,6 +100,11 @@ const currentLang = "en";
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
 
+    <!-- reCAPTCHA (only on contact page) -->
+    {isContactPage && (
+      <script src={`https://www.google.com/recaptcha/api.js?render=${import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}`} async defer></script>
+    )}
+
     <!-- Google JSON-LD Structured data -->
     <script
       type="application/ld+json"
@@ -127,12 +135,15 @@ const currentLang = "en";
       )
     }
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
     <ClientRouter />
 
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
     <slot />
+    <ToasterWrapper client:load />
   </body>
 </html>
 

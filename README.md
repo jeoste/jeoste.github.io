@@ -1,61 +1,71 @@
-# Mon Portfolio & Blog
+# Personal Portfolio & Blog
 
-Ce site est un portfolio personnel et un blog créé avec le thème [AstroPaper](https://github.com/satnaing/astro-paper) pour Astro, déployé sur GitHub Pages.
+[![CI](https://github.com/jeoste/jeoste.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/jeoste/jeoste.github.io/actions/workflows/ci.yml)
 
-## Fonctionnalités
+This is my personal portfolio and blog website built with the [AstroPaper](https://github.com/satnaing/astro-paper) theme for Astro, deployed on GitHub Pages.
 
-- Portfolio personnel
-- Blog avec articles
-- Mode clair/sombre
-- Recherche
-- Responsive
-- Optimisé pour le SEO
-- Génération dynamique d'images OG pour les articles
+## Technical Stack
 
-## Structure du projet
+- **Framework**: Astro 5.x with TypeScript
+- **Styling**: Tailwind CSS 4.x with custom design system
+- **UI Components**: Radix UI, Lucide React icons
+- **Email**: Resend for contact form
+- **Deployment**: GitHub Pages with GitHub Actions
+- **Performance**: Optimized images, lazy loading, and modern web standards
 
-```bash
+## Features
+
+- **Personal Portfolio** - Showcase of my professional experience and projects
+- **Blog** - Technical articles about data in general, thoughts, current projects and industry insights
+- **Dark/Light Mode** - Toggle between themes with smooth animations
+- **Responsive Design** - Optimized for all devices
+- **SEO Optimized** - Meta tags, sitemap, and structured data
+- **Dynamic OG Images** - Auto-generated social media previews for articles
+- **Contact Form** - Email integration with Resend
+- **RSS Feed** - Subscribe to blog updates
+
+## Project Structure
+
+```
 /
 ├── public/
 │   ├── assets/
-│   └── favicon.svg
+│   │   ├── images/          # Blog images and logos
+│   │   ├── profile.jpg      # Profile picture
+│   └── favicon.ico
 ├── src/
-│   ├── assets/
-│   ├── components/
+│   ├── components/         # Reusable UI components
+│   │   └── ui/            # shadcn/ui components
 │   ├── data/
-│   │   └── blog/
-│   │       └── articles.md
-│   ├── layouts/
-│   └── pages/
-│   └── styles/
-│   └── utils/
-│   └── config.ts
-└── astro.config.ts
+│   │   └── blog/          # Markdown blog posts
+│   ├── layouts/           # Page layouts
+│   ├── pages/             # Astro pages and routes
+│   ├── styles/            # Global CSS and typography
+│   ├── utils/             # Utility functions
+│   └── config.ts          # Site configuration
+├── astro.config.ts        # Astro configuration
+└── tailwind.config.js     # Tailwind CSS configuration
 ```
 
-## Commandes utiles
+## Blog Topics
 
-| Commande | Action |
-| :------- | :----- |
-| `pnpm install` | Installe les dépendances |
-| `pnpm run dev` | Démarre le serveur local sur `localhost:4321` |
-| `pnpm run build` | Construit le site pour production dans `./dist/` |
-| `pnpm run preview` | Prévisualise la version de production localement |
-| `pnpm run format` | Formate le code avec Prettier |
-| `pnpm run lint` | Vérifie le code avec ESLint |
+- Data Engineering & Architecture
+- Data Observability & Monitoring
+- Career Development in Data
+- Database vs Data Warehouse vs Data Lake
+- ETL vs ESB Integration Patterns
+- Technical Leadership & Consulting
 
-## Personnalisation
+## Deployment
 
-Pour personnaliser ce site:
-1. Modifiez `src/config.ts` pour changer les paramètres du site
-2. Ajoutez vos articles dans `src/data/blog/`
-3. Modifiez les pages dans `src/pages/`
-4. Personnalisez les composants dans `src/components/`
+This site is automatically deployed to GitHub Pages on every push to the `main` branch via GitHub Actions. The build process includes:
 
-## Déploiement
+- Type checking with TypeScript
+- Code formatting and linting
+- Static site generation
+- Search index generation
+- Asset optimization
 
-Ce site est configuré pour être déployé automatiquement sur GitHub Pages à chaque push sur la branche `main` via GitHub Actions.
+## License
 
----
-
-Basé sur le thème [AstroPaper](https://github.com/satnaing/astro-paper) par Sat Naing.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
