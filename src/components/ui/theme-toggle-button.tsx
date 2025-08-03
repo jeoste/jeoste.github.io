@@ -24,7 +24,7 @@ export default function ThemeToggleButton({
 
   const styleId = "theme-transition-styles"
 
-  const updateStyles = React.useCallback((css: string, name: string) => {
+  const updateStyles = React.useCallback((css: string) => {
     if (typeof window === "undefined") return
 
     let styleElement = document.getElementById(styleId) as HTMLStyleElement
@@ -41,7 +41,7 @@ export default function ThemeToggleButton({
   const toggleTheme = React.useCallback(() => {
     const animation = createAnimation(variant, start, url)
 
-    updateStyles(animation.css, animation.name)
+    updateStyles(animation.css)
 
     if (typeof window === "undefined") return
 

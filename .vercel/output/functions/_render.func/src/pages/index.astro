@@ -1,0 +1,235 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Card from "@/components/Card.astro";
+import Hr from "@/components/Hr.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
+import IconKakao from "@/assets/icons/IconKakao.svg";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconMail from "@/assets/icons/IconMail.svg";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+// Current projects for homepage
+const currentProjects = [
+  {
+    id: "data-consulting",
+    collection: "portfolio",
+    data: {
+      title: "Data Consultant",
+      description:
+        "Clients are french & european companies. <br>The mission is to synchronize their business applications to the information system in order to optimize their supply chain, logistics and customer service.",
+    },
+    slug: "/portfolio#data-consulting",
+  },
+  {
+    id: "startup-entrepreneurship",
+    collection: "portfolio",
+    data: {
+      title: "Startup & Entrepreneurship",
+      description:
+        "Developing a Data Platform that focus on Observability for B2B companies. <br>Know what, where, when and why your data contains errors, your dataflows are failing, your information system has issues and how to solve them.<br> Check by yourself : <a href='https://focusdata.dev' target='_blank' class='text-accent hover:underline transition-colors'>focusdata.dev</a>",
+    },
+    slug: "/portfolio#startup-entrepreneurship",
+  },
+  {
+    id: "trading",
+    collection: "portfolio",
+    data: {
+      title: "Trading",
+      description:
+        "When the market offers good opportunities, I trade on the crypto market. I'm using my own trading indicators built on TradingView.<br>My strategy is based on high timeframe reversal (Daily or Weekly) to short the market.",
+    },
+    slug: "/portfolio#trading",
+  },
+];
+---
+
+<Layout>
+  <Header />
+  <main id="main-content" data-layout="index">
+    <section id="hero" class="pt-8 pb-6">
+      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
+        Bienvenue!
+        <a
+          target="_blank"
+          href="/rss.xml"
+          class="ml-2 inline-block"
+          aria-label="rss feed"
+          title="RSS Feed"
+        >
+          <IconRss
+            width={20}
+            height={20}
+            class="scale-125 stroke-accent stroke-3"
+          />
+          <span class="sr-only">RSS Feed</span>
+        </a>
+      </h1>
+      <div class="mb-6 flex items-start gap-6">
+        <img
+          src="/assets/profile.jpg"
+          alt="Profil"
+          class="h-32 w-32 rounded-full border-4 border-accent object-cover"
+        />
+        <div class="flex-1">
+          <div class="mb-4">
+            <h2 class="mb-2 text-2xl font-semibold">Jeoffrey Stéphan</h2>
+            <p class="text-lg text-accent">Data Consultant & Entrepreneur & Trader</p>
+          </div>
+          <div class="mb-4">
+            <p class="text-gray-600 dark:text-gray-300">
+              With eight years of consulting experience, your data challenges are
+              no longer a problem. Whether it’s architecture, design, auditing,
+              development, testing, or business process definition, I’m here to
+              support you on your journey.
+            </p>
+          </div>
+          <div
+            class="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-300"
+          >
+            <div class="flex items-center gap-2">
+              <IconKakao class="h-5 w-5" />
+              <a
+                href="https://open.kakao.com/jeoffrey"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
+                Kakao ID : jeoffrey
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <IconLinkedin class="h-5 w-5" />
+              <a
+                href="https://linkedin.com/in/jeoffrey-stephan/"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
+                linkedin.com/in/jeoffrey-stephan/
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <IconGitHub class="h-5 w-5" />
+              <a
+                href="https://github.com/jeoste"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
+                github.com/jeoste
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <IconMail class="h-5 w-5" />
+              <a
+                href="mailto:jeoffrey.stephan@gmail.com"
+                target="_blank"
+                class="transition-colors hover:text-accent"
+              >
+                jeoffrey.stephan@gmail.com
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span>From France</span>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+              <a
+                href="https://rxresu.me/jeoste/en-data-consultant"
+                target="_blank"
+                class="inline-flex items-center justify-center rounded-lg bg-accent/10 px-4 py-2 text-accent border border-accent/20 transition-all hover:bg-accent/20 hover:border-accent/40"
+              >
+                Resume
+                <IconArrowRight class="ml-2 h-4 w-4 flex-shrink-0" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Hr noPadding={true} />
+
+      {
+        recentPosts.length > 0 && (
+          <section id="recent-posts" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+            <ul>
+              {recentPosts.map(
+                (data, index) =>
+                  index < SITE.postPerIndex && <Card variant="h3" {...data} />
+              )}
+            </ul>
+          </section>
+        )
+      }
+
+      <div class="my-8 text-center">
+        <LinkButton href="/articles">
+          All Posts
+          <IconArrowRight class="inline-block" />
+        </LinkButton>
+      </div>
+
+      <Hr noPadding={true} />
+
+      {
+        currentProjects.length > 0 && (
+          <section id="current-projects" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">
+              Current Projects
+            </h2>
+            <ul class="space-y-6">
+              {currentProjects.map(project => (
+                <li class="my-6">
+                  <a
+                    href={project.slug}
+                    class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+                  >
+                    <h3 class="text-lg font-medium decoration-dashed hover:underline">
+                      {project.data.title}
+                    </h3>
+                  </a>
+                  <p
+                    class="text-gray-600 dark:text-gray-300"
+                    set:html={project.data.description}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </section>
+    <Footer />
+  </main>
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const indexLayout = (
+        document.querySelector("#main-content") as HTMLElement
+      )?.dataset?.layout;
+      if (indexLayout) {
+        sessionStorage.setItem("backUrl", "/");
+      }
+    });
+  </script>
+</Layout>

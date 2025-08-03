@@ -4,16 +4,12 @@ import { AnimatePresence, motion } from "framer-motion"
 interface HoverExpandProps {
   images: string[]
   initialSelectedIndex?: number
-  thumbnailHeight?: number
-  modalImageSize?: number
   maxThumbnails?: number
 }
 
 export default function HoverExpand({
   images,
   initialSelectedIndex = 0,
-  thumbnailHeight = 200,
-  modalImageSize = 400,
   maxThumbnails = 11,
 }: HoverExpandProps) {
   const [selectedIndex, setSelectedIndex] =
