@@ -31,8 +31,8 @@ RESEND_API_KEY=re_xxxxxxxxxxxxx
 CONTACT_EMAIL=votre@email.com
 
 # Clés reCAPTCHA
-PUBLIC_RECAPTCHA_SITE_KEY=6LcLeoUrAAAAAJeks1ZOCrTlhLuFIUU0ewMT8Tbc
-RECAPTCHA_SECRET_KEY=votre_cle_secrete_recaptcha
+PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key_here
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key_here
 
 # Google Site Verification (optionnel)
 PUBLIC_GOOGLE_SITE_VERIFICATION=votre_code_verification
