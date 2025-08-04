@@ -1,8 +1,8 @@
 ---
 author: Jeoffrey Stéphan
 pubDatetime: 2025-07-28T01:08:52.777Z
-modDatetime: 2025-08-02T10:57:52.777Z
-title: Data Observability | Why so necessary
+modDatetime: 2025-08-04T02:57:52.777Z
+title: Data Observability | Why you need it (and don't know it)
 tags:
   - data engineering
   - data observability
@@ -11,7 +11,7 @@ tags:
   - traces
   - metrics
   - data health
-description: Understanding why a data observability platform is the new tool that enhance your information system
+description: Understanding why a data observability platform is the tool that gives you trust in your data
 ---
 
 > In today's data-driven world, organizations needs to be digital, but struggle to keep a 100% functional and available data accross their systems. Data observability emerges as the optimum solution to be aware of the current situation of the information system.
