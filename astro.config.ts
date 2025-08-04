@@ -13,14 +13,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
-  output: 'server',  // Active le mode serveur pour les API endpoints
-  server: {
-    port: 8888
-  },
-  // Configurez le déploiement GitHub Pages 
-  //base: '/', // Retirer cette ligne si votre site est à la racine du domaine
+  output: 'static',  // Mode statique pour GitHub Pages
   integrations: [sitemap(), react()],
-  adapter: vercel(),
+  // adapter: vercel(), // Désactivé pour GitHub Pages
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
