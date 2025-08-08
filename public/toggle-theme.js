@@ -24,7 +24,10 @@ function setPreference() {
 }
 
 function reflectPreference() {
-  document.firstElementChild.setAttribute("data-theme", themeValue);
+  // Apply theme immediately to prevent flash
+  if (document.firstElementChild) {
+    document.firstElementChild.setAttribute("data-theme", themeValue);
+  }
 
   // Apply the dark class for shadcn/ui components
   if (themeValue === "dark") {
@@ -33,7 +36,8 @@ function reflectPreference() {
     document.documentElement.classList.remove("dark");
   }
 
-  document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
+  // Ne pas modifier aria-label pour éviter le conflit avec React
+  // document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
 
   // Get a reference to the body element
   const body = document.body;
@@ -53,7 +57,7 @@ function reflectPreference() {
   }
 }
 
-// set early so no page flashes / CSS is made aware
+// Apply theme immediately when script loads to prevent flash
 reflectPreference();
 
 // Also apply the dark class immediately to prevent flash
@@ -63,22 +67,27 @@ if (themeValue === "dark") {
   document.documentElement.classList.remove("dark");
 }
 
+// Apply theme as early as possible
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", reflectPreference);
+} else {
+  reflectPreference();
+}
+
 window.onload = () => {
   function setThemeFeature() {
     // set on load so screen readers can get the latest value on the button
     reflectPreference();
-
-    // now this script can find and listen for clicks on the control
-    document.querySelector("#theme-btn")?.addEventListener("click", () => {
-      themeValue = themeValue === "light" ? "dark" : "light";
-      setPreference();
-    });
   }
 
   setThemeFeature();
 
   // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", setThemeFeature);
+  document.addEventListener("astro:after-swap", () => {
+    // Re-apply theme immediately after navigation
+    reflectPreference();
+    setThemeFeature();
+  });
 };
 
 // sync with system changes
@@ -88,3 +97,15 @@ window
     themeValue = isDark ? "dark" : "light";
     setPreference();
   });
+
+// Expose helpers for other scripts (e.g., React ThemeToggle)
+window.reflectPreference = reflectPreference;
+window.setTheme = (newTheme) => {
+  themeValue = newTheme === "dark" ? "dark" : "light";
+  setPreference();
+};
+
+// React toggle can dispatch this event to re-apply computed values
+window.addEventListener("theme-change", () => {
+  reflectPreference();
+});

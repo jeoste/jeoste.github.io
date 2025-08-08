@@ -5,17 +5,17 @@
     @apply prose-headings:!mt-6 prose-headings:!mb-4 prose-headings:!text-foreground prose-p:!text-foreground prose-a:!text-foreground prose-a:!decoration-dashed prose-a:underline-offset-8 hover:prose-a:text-accent prose-blockquote:!border-l-accent/50 prose-blockquote:opacity-80 prose-figcaption:!text-foreground prose-figcaption:opacity-70 prose-strong:!text-foreground prose-code:rounded prose-code:bg-muted/75 prose-code:p-1 prose-code:!text-foreground prose-code:before:!content-none prose-code:after:!content-none prose-ol:!text-foreground prose-ul:overflow-x-clip prose-ul:!text-foreground prose-li:marker:!text-accent prose-table:text-foreground prose-th:border prose-th:border-border prose-td:border prose-td:border-border prose-img:mx-auto prose-img:!my-2 prose-img:border-2 prose-img:border-border prose-hr:!border-border;
   }
   
-  /* Correction de la hiérarchie des titres avec dégradé de couleurs */
+  /* Restore clearer heading hierarchy for readability and SEO */
   .prose h1 {
-    @apply !text-xl !font-semibold !text-accent !mt-8 !mb-4 sm:!text-2xl;
+    @apply !text-3xl !font-semibold !text-foreground !mt-8 !mb-4 sm:!text-4xl;
   }
   
   .prose h2 {
-    @apply !text-lg !font-semibold !text-accent/80 !mt-6 !mb-3 sm:!text-xl;
+    @apply !text-2xl !font-semibold !text-foreground !mt-6 !mb-3 sm:!text-3xl;
   }
   
   .prose h3 {
-    @apply !text-base !font-medium !text-accent/60 !not-italic !mt-5 !mb-2 sm:!text-lg;
+    @apply !text-xl !font-medium !text-foreground !not-italic !mt-5 !mb-2 sm:!text-2xl;
   }
   
   .prose h4 {

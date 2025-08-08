@@ -1,32 +1,30 @@
 ---
-import Hr from "./Hr.astro";
-import IconX from "@/assets/icons/IconX.svg";
-import IconMoon from "@/assets/icons/IconMoon.svg";
-import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
-import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import { SITE } from "@/config";
+import Hr from "./Hr.astro";
+import ToasterWrapper from "@/components/ToasterWrapper";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
+const pathname = Astro.url.pathname;
+const currentPath = pathname.replace(/\/$/, "");
 
-const { pathname } = Astro.url;
-
-// Remove trailing slash from current pathname if exists
-const currentPath = pathname.replace(/\/$/, '');
+type NavItem = { href: string; label: string };
+const navItems: NavItem[] = [
+  { href: "/", label: "home" },
+  { href: "/portfolio", label: "portfolio" },
+  { href: "/articles", label: "articles" },
+  { href: "/vault", label: "vault" },
+  { href: "/contact", label: "contact" },
+  { href: "/achievements", label: "achievements" },
+];
 
 const isActive = (path: string) => {
-  // Remove trailing slash from the provided path
-  path = path.replace(/\/$/, '');
-  
-  // For home page
+  path = path.replace(/\/$/, "");
   if (path === "/" && currentPath === "") return true;
-  
-  // For other pages - only match exact paths
   return currentPath === path;
 };
 ---
 
-<header
-  style="background: transparent;"
->
+<header style="background: transparent">
   <a
     id="skip-to-content"
     href="#main-content"
@@ -38,113 +36,46 @@ const isActive = (path: string) => {
     id="nav-container"
     class="mx-auto flex max-w-5xl flex-col items-center justify-between sm:flex-row sm:items-center w-full p-4 sm:py-6 sm:px-8"
   >
-    <a
-      href="/"
-      class="text-2xl leading-7 font-semibold whitespace-nowrap flex flex-col items-end"
-    >
+    <a href="/" class="text-2xl leading-7 font-semibold whitespace-nowrap flex flex-col items-end">
       <span>{SITE.title}</span>
-      <span class="text-xs opacity-70 italic">v1.1.0</span>
+      <span class="text-xs opacity-70 italic">v1.2.0</span>
     </a>
-    
+
     <div class="flex items-center gap-4">
-      <nav
-        id="nav-menu"
-        class="flex w-full flex-col items-center sm:ml-8 sm:flex-row sm:justify-end sm:space-x-6 sm:py-0"
-      >
-        <button
-          id="menu-btn"
-          class="focus-outline self-end p-2 sm:hidden"
-          aria-label="Open Menu"
-          aria-expanded="false"
-          aria-controls="menu-items"
-        >
-          <IconX id="close-icon" class="hidden" />
-          <IconMenuDeep id="menu-icon" />
-        </button>
-        <ul
-          id="menu-items"
-          class:list={[
-            "mt-4 grid w-60 grid-cols-2 place-content-center gap-3",
-            "[&>li>a]:block [&>li>a]:px-4 [&>li>a]:py-3 [&>li>a]:text-center [&>li>a]:font-medium [&>li>a]:hover:text-accent sm:[&>li>a]:px-4 sm:[&>li>a]:py-2",
-            "hidden",
-            "sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-6 sm:gap-y-0 sm:items-center",
-          ]}
-        >
-          <li class="col-span-2">
-            <a href="/" class:list={{ "active-nav": isActive("/") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
-              home
-            </a>
-          </li>
-          <li class="col-span-2">
-            <a href="/portfolio" class:list={{ "active-nav": isActive("/portfolio") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
-              portfolio
-            </a>
-          </li>
-          <li class="col-span-2">
-            <a href="/articles" class:list={{ "active-nav": isActive("/articles") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
-              articles
-            </a>
-          </li>
-          <li class="col-span-2">
-            <a href="/vault" class:list={{ "active-nav": isActive("/vault") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
-              vault
-            </a>
-          </li>
-          <li class="col-span-2">
-            <a href="/contact" class:list={{ "active-nav": isActive("/contact") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
-              contact
-            </a>
-          </li>
-          <li class="col-span-2">
-            <a href="/achievements" class:list={{ "active-nav": isActive("/achievements") }} style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;">
-              achievements
-            </a>
-          </li>
-          </li>
+      <nav class="flex items-center">
+        <details class="sm:hidden">
+          <summary class="list-none px-3 py-2 rounded focus-outline hover:text-accent">Menu</summary>
+          <ul class="mt-3 grid w-60 grid-cols-2 gap-3">
+            {navItems.map(item => (
+              <li class="col-span-2">
+                <a
+                  href={item.href}
+                  class:list={["block px-4 py-2 text-center font-medium hover:text-accent", { "active-nav": isActive(item.href) }]}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+        <ul class="hidden sm:flex sm:gap-x-6">
+          {navItems.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class:list={["px-4 py-2 font-medium hover:text-accent", { "active-nav": isActive(item.href) }]}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
-      
-      {SITE.lightAndDarkMode && (
-        <button
-          id="theme-btn"
-          class="focus-outline relative size-10 p-2 hover:bg-muted/50 hover:text-accent ml-8"
-          style="box-shadow: 0 2px 8px 0 var(--header-shadow-color); border-radius: 0.5rem;"
-          title="Light/Dark"
-          aria-label="Toggle theme"
-          aria-live="polite"
-        >
-          <IconMoon class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <IconSunHigh class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-        </button>
-      )}
+      {SITE.lightAndDarkMode && <ThemeToggle client:idle />}
     </div>
   </div>
   <Hr />
+  <ToasterWrapper client:idle />
 </header>
-
-<script>
-  function toggleNav() {
-    const menuBtn = document.querySelector("#menu-btn");
-    const menuItems = document.querySelector("#menu-items");
-    const menuIcon = document.querySelector("#menu-icon");
-    const closeIcon = document.querySelector("#close-icon");
-
-    if (!menuBtn || !menuItems || !menuIcon || !closeIcon) return;
-
-    menuBtn.addEventListener("click", () => {
-      const openMenu = menuBtn.getAttribute("aria-expanded") === "true";
-
-      menuBtn.setAttribute("aria-expanded", openMenu ? "false" : "true");
-      menuBtn.setAttribute("aria-label", openMenu ? "Open Menu" : "Close Menu");
-
-      menuItems.classList.toggle("hidden");
-      menuIcon.classList.toggle("hidden");
-      closeIcon.classList.toggle("hidden");
-    });
-  }
-
-  toggleNav();
-
-  // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", toggleNav);
-</script>

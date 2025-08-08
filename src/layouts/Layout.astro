@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
 import ToasterWrapper from "@/components/ToasterWrapper";
@@ -37,18 +36,27 @@ const isContactPage = Astro.url.pathname === "/contact";
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: `${title}`,
-  image: `${socialImageURL}`,
-  datePublished: `${pubDatetime?.toISOString()}`,
-  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: `${author}`,
-      ...(profile && { url: profile }),
-    },
-  ],
+  ...(pubDatetime
+    ? {
+        "@type": "BlogPosting",
+        headline: `${title}`,
+        image: `${socialImageURL}`,
+        datePublished: `${pubDatetime?.toISOString()}`,
+        ...(modDatetime && { dateModified: modDatetime.toISOString() }),
+        author: [
+          {
+            "@type": "Person",
+            name: `${author}`,
+            ...(profile && { url: profile }),
+          },
+        ],
+      }
+    : {
+        "@type": "WebPage",
+        name: `${title}`,
+        url: `${canonicalURL}`,
+        ...(SITE?.website && { isPartOf: { "@type": "WebSite", url: SITE.website } }),
+      }),
 };
 
 ---
@@ -63,13 +71,20 @@ const structuredData = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- General Meta Tags -->
-    <title>{SITE.browserTitle}</title>
+    <title>{title ? `${title} | ${SITE.title}` : SITE.browserTitle}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload Google Fonts stylesheet to improve LCP -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={pubDatetime ? "article" : "website"} />
+    <meta property="og:site_name" content={SITE.title} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
@@ -99,6 +114,7 @@ const structuredData = {
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
+    {SITE.twitterSite && <meta name="twitter:site" content={SITE.twitterSite} />}
 
     <!-- reCAPTCHA removed for static site -->
 
@@ -118,7 +134,9 @@ const structuredData = {
       href={new URL("rss.xml", Astro.site)}
     />
 
-    <meta name="theme-color" content="" />
+    <!-- Theme color for light/dark to avoid FOUC before JS applies theme -->
+    <meta name="theme-color" content="hsl(190, 60%, 96%)" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="hsl(0, 0%, 10%)" media="(prefers-color-scheme: dark)" />
 
     {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
@@ -134,13 +152,18 @@ const structuredData = {
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <ClientRouter />
-
     <script is:inline src="/toggle-theme.js"></script>
+    <script is:inline>
+      // Register SW without search UI
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {})
+        })
+      }
+    </script>
   </head>
   <body>
     <slot />
-    <ToasterWrapper client:load />
   </body>
 </html>
 
