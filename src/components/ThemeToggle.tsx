@@ -24,25 +24,30 @@ export function ThemeToggle() {
     const newTheme = theme === "light" ? "dark" : "light"
     setTheme(newTheme)
     
-    // Mettre à jour localStorage
-    localStorage.setItem("theme", newTheme)
-    
-    // Appliquer le thème immédiatement
-    document.documentElement.setAttribute("data-theme", newTheme)
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-
-    // Mettre à jour la couleur du thème meta
-    const body = document.body
-    if (body) {
-      const computedStyles = window.getComputedStyle(body)
-      const bgColor = computedStyles.backgroundColor
-      document
-        .querySelector("meta[name='theme-color']")
-        ?.setAttribute("content", bgColor)
+    // Mise à jour centralisée via le script early (évite doublons et FOUC)
+    try {
+      // @ts-ignore
+      if (typeof window.setTheme === "function") {
+        // @ts-ignore
+        window.setTheme(newTheme)
+        window.dispatchEvent(new Event("theme-change"))
+      } else {
+        localStorage.setItem("theme", newTheme)
+        document.documentElement.setAttribute("data-theme", newTheme)
+        if (newTheme === "dark") {
+          document.documentElement.classList.add("dark")
+        } else {
+          document.documentElement.classList.remove("dark")
+        }
+      }
+    } catch (_) {
+      localStorage.setItem("theme", newTheme)
+      document.documentElement.setAttribute("data-theme", newTheme)
+      if (newTheme === "dark") {
+        document.documentElement.classList.add("dark")
+      } else {
+        document.documentElement.classList.remove("dark")
+      }
     }
   }, [theme, mounted])
 

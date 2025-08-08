@@ -97,3 +97,15 @@ window
     themeValue = isDark ? "dark" : "light";
     setPreference();
   });
+
+// Expose helpers for other scripts (e.g., React ThemeToggle)
+window.reflectPreference = reflectPreference;
+window.setTheme = (newTheme) => {
+  themeValue = newTheme === "dark" ? "dark" : "light";
+  setPreference();
+};
+
+// React toggle can dispatch this event to re-apply computed values
+window.addEventListener("theme-change", () => {
+  reflectPreference();
+});

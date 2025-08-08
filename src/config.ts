@@ -6,6 +6,7 @@ export const SITE = {
   title: "jeoste",
   browserTitle: "jeoste", // Titre affiché dans l'onglet du navigateur
   ogImage: "astropaper-og.jpg",
+  twitterSite: "", // e.g. "@your_handle" (optional)
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes

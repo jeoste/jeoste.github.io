@@ -58,7 +58,7 @@ export function HeaderReact({ currentPath }: HeaderProps) {
           className="text-2xl leading-7 font-semibold whitespace-nowrap flex flex-col items-end"
         >
           <span>{SITE.title}</span>
-          <span className="text-xs opacity-70 italic">v1.1.0</span>
+          <span className="text-xs opacity-70 italic">v1.2.0</span>
         </a>
         
         <div className="flex items-center gap-4">

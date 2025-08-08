@@ -1,10 +1,81 @@
 ---
-import { HeaderReact } from "./HeaderReact";
+import { SITE } from "@/config";
+import Hr from "./Hr.astro";
+import ToasterWrapper from "@/components/ToasterWrapper";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
-const { pathname } = Astro.url;
+const pathname = Astro.url.pathname;
+const currentPath = pathname.replace(/\/$/, "");
 
-// Remove trailing slash from current pathname if exists
-const currentPath = pathname.replace(/\/$/, '');
+type NavItem = { href: string; label: string };
+const navItems: NavItem[] = [
+  { href: "/", label: "home" },
+  { href: "/portfolio", label: "portfolio" },
+  { href: "/articles", label: "articles" },
+  { href: "/vault", label: "vault" },
+  { href: "/contact", label: "contact" },
+  { href: "/achievements", label: "achievements" },
+];
+
+const isActive = (path: string) => {
+  path = path.replace(/\/$/, "");
+  if (path === "/" && currentPath === "") return true;
+  return currentPath === path;
+};
 ---
 
-<HeaderReact currentPath={currentPath} client:load />
+<header style="background: transparent">
+  <a
+    id="skip-to-content"
+    href="#main-content"
+    class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4"
+  >
+    Skip to content
+  </a>
+  <div
+    id="nav-container"
+    class="mx-auto flex max-w-5xl flex-col items-center justify-between sm:flex-row sm:items-center w-full p-4 sm:py-6 sm:px-8"
+  >
+    <a href="/" class="text-2xl leading-7 font-semibold whitespace-nowrap flex flex-col items-end">
+      <span>{SITE.title}</span>
+      <span class="text-xs opacity-70 italic">v1.2.0</span>
+    </a>
+
+    <div class="flex items-center gap-4">
+      <nav class="flex items-center">
+        <details class="sm:hidden">
+          <summary class="list-none px-3 py-2 rounded focus-outline hover:text-accent">Menu</summary>
+          <ul class="mt-3 grid w-60 grid-cols-2 gap-3">
+            {navItems.map(item => (
+              <li class="col-span-2">
+                <a
+                  href={item.href}
+                  class:list={["block px-4 py-2 text-center font-medium hover:text-accent", { "active-nav": isActive(item.href) }]}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+        <ul class="hidden sm:flex sm:gap-x-6">
+          {navItems.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class:list={["px-4 py-2 font-medium hover:text-accent", { "active-nav": isActive(item.href) }]}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      {SITE.lightAndDarkMode && <ThemeToggle client:idle />}
+    </div>
+  </div>
+  <Hr />
+  <ToasterWrapper client:idle />
+</header>

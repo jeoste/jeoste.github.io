@@ -26,7 +26,7 @@ export function NavButton({ href, children, isActive = false, className }: NavBu
         borderRadius: "0.5rem"
       }}
     >
-      <a href={href}>
+      <a href={href} aria-current={isActive ? "page" : undefined}>
         {children}
       </a>
     </Button>
