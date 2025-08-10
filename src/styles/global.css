@@ -89,8 +89,27 @@ html[data-theme="dark"] {
   a:hover,
   button:hover {
     color: var(--accent-hover);
-    box-shadow: 0 2px 8px 0 var(--accent-hover, 0.20);
+    box-shadow: none;
   }
+
+/* Override glow specifically inside header navigation to avoid orange flash */
+header nav a,
+header nav a:hover,
+header nav a:focus,
+header nav a:active,
+header nav button,
+header nav button:hover,
+header nav button:focus,
+header nav button:active {
+  box-shadow: none !important;
+}
+
+/* Supprimer l'outline orangé (focus) dans le header, on garde le fond contrasté comme indicateur */
+header nav a:focus-visible,
+header nav a:focus,
+header nav a:active {
+  outline: none !important;
+}
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -107,17 +126,26 @@ html[data-theme="dark"] {
 }
 
 .active-nav,
-#menu-items a:hover {
-  background: var(--accent-button);
-  color: hsl(210, 100%, 25%) !important;
-  box-shadow: 0 2px 8px 0 var(--header-shadow-color), 0 0 12px 2px var(--accent);
-  border-radius: 0.5rem;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+#menu-items a:hover,
+header nav a:hover,
+header nav a:active,
+header nav a:focus-visible {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  font-weight: normal;
+  transition: color 0.2s;
 }
 
 html[data-theme="dark"] .active-nav,
-html[data-theme="dark"] #menu-items a:hover {
-  color: var(--accent) !important;
+html[data-theme="dark"] #menu-items a:hover,
+html[data-theme="dark"] header nav a:hover,
+html[data-theme="dark"] header nav a:active,
+html[data-theme="dark"] header nav a:focus-visible {
+  background: transparent;
+  color: var(--accent);
 }
 
 #nav-container > a {
@@ -129,11 +157,11 @@ html[data-theme="dark"] #menu-items a:hover {
 }
 
 html[data-theme="dark"] #nav-container > a:hover {
-  color: #fff !important;
+  color: var(--accent) !important;
 }
 
 html[data-theme="light"] #nav-container > a:hover {
-  color: #1E2129 !important;
+  color: var(--accent) !important;
 }
 
 @theme inline {

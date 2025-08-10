@@ -81,8 +81,8 @@ export function SearchButton() {
     <Button
       variant="ghost"
       size="icon"
-      className="relative size-10 p-2 hover:bg-muted/50 hover:text-accent ml-2 focus-outline"
-      style={{ boxShadow: "0 2px 8px 0 var(--header-shadow-color)", borderRadius: "0.5rem" }}
+      className="relative size-10 p-2 hover:bg-muted/50 ml-2 focus-outline rounded-md"
+      style={{ boxShadow: "none", borderRadius: "0.5rem" }}
       aria-label="Open search"
       title="Search"
       onClick={onClick}

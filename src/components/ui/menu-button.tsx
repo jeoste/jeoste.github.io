@@ -16,7 +16,7 @@ export function MenuButton({ isOpen, onToggle, className }: MenuButtonProps) {
       onClick={onToggle}
       variant="ghost"
       size="icon"
-      className={`self-end p-2 sm:hidden focus-outline ${className || ""}`}
+      className={`self-end p-2 sm:hidden focus-outline rounded-md ${className || ""}`}
       aria-label={isOpen ? "Close Menu" : "Open Menu"}
       aria-expanded={isOpen}
       aria-controls="menu-items"
