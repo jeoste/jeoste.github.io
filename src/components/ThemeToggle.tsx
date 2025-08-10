@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/components/ui/button"
 import { Moon, Sun } from "lucide-react"
 
 export function ThemeToggle() {
@@ -53,32 +52,28 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button
-        variant="ghost"
-        size="icon"
-        className="relative size-10 p-2 hover:bg-muted/50 ml-8 focus-outline rounded-md"
-        style={{ boxShadow: "none", borderRadius: "0.5rem" }}
+      <button
+        type="button"
+        className="relative w-10 h-10 p-2 ml-8"
         disabled
         aria-label="Toggle theme"
       >
         <Moon className="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all" />
-      </Button>
+      </button>
     )
   }
 
   return (
-    <Button
+    <button
+      type="button"
       onClick={toggleTheme}
-      variant="ghost"
-      size="icon"
-      className="relative size-10 p-2 hover:bg-muted/50 ml-8 focus-outline rounded-md"
-      style={{ boxShadow: "none", borderRadius: "0.5rem" }}
+      className="relative w-10 h-10 p-2 ml-8"
       title="Light/Dark"
       aria-label="Toggle theme"
       aria-live="polite"
     >
       <Moon className="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
       <Sun className="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-    </Button>
+    </button>
   )
 }

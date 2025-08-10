@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 interface NavButtonProps {
@@ -13,18 +12,17 @@ interface NavButtonProps {
 
 export function NavButton({ href, children, isActive = false, className }: NavButtonProps) {
   return (
-    <Button
-      asChild
-      variant="ghost"
+    <a
+      href={href}
+      aria-current={isActive ? "page" : undefined}
       className={cn(
-        "px-4 py-2 font-medium focus-outline rounded-md",
-        isActive && "active-nav",
+        "px-4 py-2 font-medium",
+        isActive ? "text-accent underline" : "text-inherit",
+        "focus:outline-none focus-visible:underline",
         className
       )}
     >
-      <a href={href} aria-current={isActive ? "page" : undefined}>
-        {children}
-      </a>
-    </Button>
+      {children}
+    </a>
   )
 }
