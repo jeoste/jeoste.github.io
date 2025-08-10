@@ -8,6 +8,7 @@ import Card from "@/components/Card.astro";
 import Hr from "@/components/Hr.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconRss from "@/assets/icons/IconRss.svg";
+import ResponsiveImage from "@/components/ui/ResponsiveImage.astro";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
@@ -68,7 +69,7 @@ const currentProjects = [
   <main id="main-content" data-layout="index" data-pagefind-body>
     <section id="hero" class="pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Welcome!
+        Bienvenue!
         <a
           target="_blank"
           href="/rss.xml"
@@ -86,18 +87,17 @@ const currentProjects = [
         </a>
       </h1>
       <div class="mb-6 flex items-start gap-6">
-        <picture>
-          <img
-            src="/assets/profile.jpg"
-            alt="Portrait of Jeoffrey Stéphan"
-            class="h-32 w-32 rounded-full border-4 border-accent object-cover"
-            width="128"
-            height="128"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          />
-        </picture>
+        <ResponsiveImage
+          src="/assets/profile.jpg"
+          alt="Portrait of Jeoffrey Stéphan"
+          width={128}
+          height={128}
+          class="h-32 w-32 rounded-full border-4 border-accent object-cover"
+          sizes="(max-width: 640px) 96px, 128px"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
         <div class="flex-1">
           <div class="mb-4">
             <h2 class="mb-2 text-2xl font-semibold">Jeoffrey Stéphan</h2>
@@ -198,7 +198,7 @@ const currentProjects = [
         currentProjects.length > 0 && (
           <section id="current-projects" class="pt-12 pb-6">
             <h2 class="text-2xl font-semibold tracking-wide">
-              Current Projects
+              Current Projects & Hobbies
             </h2>
             <ul class="space-y-6">
               {currentProjects.map(project => (
