@@ -45,12 +45,15 @@ const isActive = (path: string) => {
       <nav class="flex items-center">
         <details class="sm:hidden">
           <summary class="list-none px-3 py-2 rounded focus-outline">Menu</summary>
-          <ul class="mt-3 grid w-60 grid-cols-2 gap-3">
+          <ul id="menu-items" class="mt-3 grid w-60 grid-cols-2 gap-3">
             {navItems.map(item => (
               <li class="col-span-2">
                 <a
                   href={item.href}
-                  class:list={["block px-4 py-2 text-center font-medium", { "active-nav": isActive(item.href) }]}
+                  class:list={[
+                    "block h-9 leading-none px-4 py-2 text-center font-semibold rounded-md transition-colors hover:bg-[var(--accent-button)]",
+                    { "active-nav": isActive(item.href) }
+                  ]}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {item.label}
@@ -59,12 +62,15 @@ const isActive = (path: string) => {
             ))}
           </ul>
         </details>
-        <ul class="hidden sm:flex sm:gap-x-6">
+        <ul class="hidden sm:flex sm:gap-x-6 items-center">
           {navItems.map(item => (
             <li>
               <a
                 href={item.href}
-                class:list={["px-4 py-2 font-medium", { "active-nav": isActive(item.href) }]}
+                class:list={[
+                  "inline-flex h-9 items-center leading-none px-4 py-2 font-semibold rounded-md transition-colors hover:bg-[var(--accent-button)]",
+                  { "active-nav": isActive(item.href) }
+                ]}
                 aria-current={isActive(item.href) ? "page" : undefined}
               >
                 {item.label}

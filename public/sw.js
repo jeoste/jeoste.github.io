@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jeoste-cache-v1';
+const CACHE_NAME = 'jeoste-cache-v4';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
@@ -20,7 +20,8 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Network-first for pages, cache-first for static assets
+// Network-first for pages, cache-first for most static assets
+// but CSS uses network-first to avoid serving stale styles
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -28,8 +29,22 @@ self.addEventListener('fetch', (event) => {
   // Only handle GET
   if (request.method !== 'GET') return;
 
-  // Cache-first for static assets
-  if (url.pathname.startsWith('/_astro/') || url.pathname.startsWith('/assets/') || url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.endsWith('.png') || url.pathname.endsWith('.jpg') || url.pathname.endsWith('.webp') || url.pathname.endsWith('.svg')) {
+  // Network-first specifically for CSS to ensure latest design updates
+  if (request.destination === 'style' || url.pathname.endsWith('.css')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const respClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, respClone));
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // Cache-first for other static assets (hashed build files, images, etc.)
+  if (url.pathname.startsWith('/_astro/') || url.pathname.startsWith('/assets/') || url.pathname.endsWith('.js') || url.pathname.endsWith('.png') || url.pathname.endsWith('.jpg') || url.pathname.endsWith('.webp') || url.pathname.endsWith('.svg')) {
     event.respondWith(
       caches.match(request).then((cached) => cached || fetch(request).then((response) => {
         const respClone = response.clone();
