@@ -22,7 +22,7 @@ html[data-theme="light"] {
   --secondary-foreground: hsl(190, 60%, 96%); /* couleur de texte sur fond secondaire */
   --aura: radial-gradient(ellipse 80% 20% at 50% 0%, rgba(0, 111, 214, 0.751), transparent 70%);
   --header-shadow-color: hsl(210, 100%, 47%, 0.18);
-  --accent-button: hsla(210, 100%, 42%, 0.12);  /* fond discret au hover pour la nav (clair) */
+  --accent-button: hsla(210, 100%, 42%, 0.24);  /* fond plus contrasté au hover pour la nav (clair) */
 }
 
 html[data-theme="dark"] {
@@ -103,7 +103,7 @@ header nav button:focus,
 header nav button:active {
   box-shadow: none !important;
   border-radius: 9999px; /* conserver la forme pill en permanence */
-  transition: color 0.2s linear !important; /* pas de transition sur background/border */
+  transition: color 0.12s linear !important; /* pas de transition sur background/border */
   height: 2.25rem; /* h-9 pour stabiliser la hauteur */
   line-height: 1;   /* éviter les sauts verticaux liés au line-height */
   padding-top: 0.5rem;  /* py-2 */
@@ -165,6 +165,20 @@ html[data-theme="dark"] header nav:has(a:hover) a.active-nav:not(:hover) {
 }
 html[data-theme="dark"] #menu-items:has(a:hover) a.active-nav:not(:hover) {
   background-color: transparent !important;
+}
+
+/* Light mode: liens de nav en blanc pour plus de contraste */
+html[data-theme="light"] header nav a,
+html[data-theme="light"] #menu-items a {
+  color: #000000 !important;
+}
+html[data-theme="light"] header nav a:hover,
+html[data-theme="light"] header nav a:active,
+html[data-theme="light"] header nav a:focus-visible,
+html[data-theme="light"] #menu-items a:hover,
+html[data-theme="light"] #menu-items a:active,
+html[data-theme="light"] #menu-items a:focus-visible {
+  color: #000000 !important;
 }
 
 html[data-theme="dark"] #menu-items a:hover,
