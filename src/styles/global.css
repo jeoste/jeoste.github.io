@@ -22,7 +22,7 @@ html[data-theme="light"] {
   --secondary-foreground: hsl(190, 60%, 96%); /* couleur de texte sur fond secondaire */
   --aura: radial-gradient(ellipse 80% 20% at 50% 0%, rgba(0, 111, 214, 0.751), transparent 70%);
   --header-shadow-color: hsl(210, 100%, 47%, 0.18);
-  --accent-button: hsla(210, 100%, 85%, 0.6);  /* juste pour le bouton header en mode clair */
+  --accent-button: hsla(210, 100%, 42%, 0.24);  /* fond plus contrasté au hover pour la nav (clair) */
 }
 
 html[data-theme="dark"] {
@@ -33,8 +33,8 @@ html[data-theme="dark"] {
   --card: hsl(0, 0%, 15%);                    /* cartes légèrement plus claires que le fond */
   --card-foreground: hsl(0, 0%, 92%);         /* même couleur que foreground */
   --accent: hsl(36, 94%, 52%);                /* accent jaune doré */
-  --accent-hover: hsl(36, 94%, 52%);        /* jaune plus clair au hover */
-  --accent-button: hsla(36, 97%, 73%, 0.244);        /* just for button in header */
+  --accent-hover: hsl(36, 94%, 52%);
+  --accent-button: hsla(36, 94%, 52%, 0.18); /* fond discret au hover pour la nav (sombre) */
   --muted: hsl(0, 0%, 25%);                   /* éléments désactivés, gris foncé */
   --muted-foreground: hsl(0, 0%, 65%);        /* texte secondaire */
   --border: hsl(36, 94%, 52%); 
@@ -84,13 +84,40 @@ html[data-theme="dark"] {
   a,
   button {
     @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
-    transition: color 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s;
+    transition: color 0.12s linear, background 0s, box-shadow 0s, border 0s;
   }
   a:hover,
   button:hover {
     color: var(--accent-hover);
-    box-shadow: 0 2px 8px 0 var(--accent-hover, 0.20);
+    box-shadow: none;
   }
+
+/* Override glow specifically inside header navigation to avoid orange flash */
+header nav a,
+header nav a:hover,
+header nav a:focus,
+header nav a:active,
+header nav button,
+header nav button:hover,
+header nav button:focus,
+header nav button:active {
+  box-shadow: none !important;
+  border-radius: 9999px; /* conserver la forme pill en permanence */
+  transition: color 0.12s linear !important; /* pas de transition sur background/border */
+  height: 2.25rem; /* h-9 pour stabiliser la hauteur */
+  line-height: 1;   /* éviter les sauts verticaux liés au line-height */
+  padding-top: 0.5rem;  /* py-2 */
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;   /* px-4 */
+  padding-right: 1rem;
+}
+
+/* Supprimer l'outline orangé (focus) dans le header, on garde le fond contrasté comme indicateur */
+header nav a:focus-visible,
+header nav a:focus,
+header nav a:active {
+  outline: none !important;
+}
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -106,18 +133,62 @@ html[data-theme="dark"] {
   }
 }
 
-.active-nav,
-#menu-items a:hover {
-  background: var(--accent-button);
-  color: hsl(210, 100%, 25%) !important;
-  box-shadow: 0 2px 8px 0 var(--header-shadow-color), 0 0 12px 2px var(--accent);
-  border-radius: 0.5rem;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+#menu-items a:hover,
+header nav a:hover,
+header nav a:active,
+header nav a:focus-visible {
+  /* Ne pas changer le display pour éviter les sauts d'alignement */
+  background-color: var(--accent-button) !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 9999px !important; /* pill */
+  transition: none; /* disparition immédiate au changement de catégorie */
 }
 
-html[data-theme="dark"] .active-nav,
-html[data-theme="dark"] #menu-items a:hover {
-  color: var(--accent) !important;
+/* L'élément actif n'a plus de fond, uniquement le hover affiche le fond discret */
+.active-nav {
+  background-color: transparent !important;
+}
+
+/* Eviter l'effet "double pill": si un lien est survolé, on retire le fond du lien actif */
+header nav:has(a:hover) a.active-nav:not(:hover) {
+  background-color: transparent !important;
+}
+html[data-theme="dark"] header nav:has(a:hover) a.active-nav:not(:hover) {
+  background-color: transparent !important;
+}
+
+/* Même logique pour le menu mobile (liste #menu-items) */
+#menu-items:has(a:hover) a.active-nav:not(:hover) {
+  background-color: transparent !important;
+}
+html[data-theme="dark"] #menu-items:has(a:hover) a.active-nav:not(:hover) {
+  background-color: transparent !important;
+}
+
+/* Light mode: liens de nav en blanc pour plus de contraste */
+html[data-theme="light"] header nav a,
+html[data-theme="light"] #menu-items a {
+  color: #000000 !important;
+}
+html[data-theme="light"] header nav a:hover,
+html[data-theme="light"] header nav a:active,
+html[data-theme="light"] header nav a:focus-visible,
+html[data-theme="light"] #menu-items a:hover,
+html[data-theme="light"] #menu-items a:active,
+html[data-theme="light"] #menu-items a:focus-visible {
+  color: #000000 !important;
+}
+
+html[data-theme="dark"] #menu-items a:hover,
+html[data-theme="dark"] header nav a:hover,
+html[data-theme="dark"] header nav a:active,
+html[data-theme="dark"] header nav a:focus-visible {
+  /* Ne pas changer le display pour éviter les sauts d'alignement */
+  background-color: var(--accent-button) !important;
+  color: inherit !important;
+  transition: none;
 }
 
 #nav-container > a {
@@ -129,11 +200,11 @@ html[data-theme="dark"] #menu-items a:hover {
 }
 
 html[data-theme="dark"] #nav-container > a:hover {
-  color: #fff !important;
+  color: var(--accent) !important;
 }
 
 html[data-theme="light"] #nav-container > a:hover {
-  color: #1E2129 !important;
+  color: var(--accent) !important;
 }
 
 @theme inline {

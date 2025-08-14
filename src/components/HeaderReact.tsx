@@ -83,7 +83,7 @@ export function HeaderReact({ currentPath }: HeaderProps) {
                   <NavButton 
                     href={item.href} 
                     isActive={isActive(item.href)}
-                    className="block px-4 py-3 text-center font-medium hover:text-accent sm:px-4 sm:py-2"
+                    className="block px-4 py-3 text-center font-medium sm:px-4 sm:py-2"
                   >
                     {item.label}
                   </NavButton>

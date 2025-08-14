@@ -3,6 +3,7 @@ author: Jeoffrey Stéphan
 pubDatetime: 2025-01-27T10:00:00.000Z
 modDatetime: 2025-01-27T10:00:00.000Z
 title: FOCUS - Building a Modern Data Observability Platform from Scratch
+draft: true
 tags:
   - data observability
   - data engineering
