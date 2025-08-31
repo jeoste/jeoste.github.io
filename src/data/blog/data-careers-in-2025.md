@@ -1,7 +1,7 @@
 ---
 author: Jeoffrey Stéphan
 pubDatetime: 2025-07-31T01:00:00.737Z
-modDatetime: 2025-08-02T14:00:00.000Z
+modDatetime: 2025-08-31T15:35:00.000Z
 title: How to Start Your Data Career in 2025 | A Complete Beginner's Guide
 tags:
   - data career
@@ -39,7 +39,9 @@ University people are here to teach you technology, mindset, attitude. Grade are
 
 Technical case =/= business use case.
 
-It took me many years to understand this, because most of my colleagues didn't want me to know this, so I could stay in my developer position and not climbing the ladder to a more "consulting" or "managing" role that they were enrolled for.
+It took me many years to understand this, because I was too much into technical details, and in the backend team. My only vision from business was the tickets I received in order to fix bugs that has been found by clients or our functional team. 
+
+I could have stayed in my developer position if I didn't make a choice to see outside of this world.
 
 So as a junior, embrace the business problematic. Use your time to understand, not just how, but why this problem needs to be solved. AI can help you figure out the technical details, but AI doesn't know the context of the business and the client that you have to satisfy.
 
